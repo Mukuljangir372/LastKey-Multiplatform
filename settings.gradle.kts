@@ -17,4 +17,4 @@ pluginManagement {
 
 rootProject.name = "LastKey"
 
-include(":android", ":desktop", ":common")
+include(":app-android", ":app-desktop", ":common")
