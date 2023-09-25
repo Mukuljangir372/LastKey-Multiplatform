@@ -14,5 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "LastKey"
+
 include(":app-android")
 include(":shared")
