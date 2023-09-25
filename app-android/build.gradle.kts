@@ -1,37 +1,49 @@
 plugins {
-    id("org.jetbrains.compose")
     id("com.android.application")
     kotlin("android")
 }
 
-group = "com.mu.lastkey"
-version = "1.0-SNAPSHOT"
-
-repositories {
-    jcenter()
-}
-
-dependencies {
-    implementation(project(":common"))
-    implementation("androidx.activity:activity-compose:1.5.0")
-}
-
 android {
-    compileSdkVersion(33)
+    namespace = "com.mu.lastkey.android"
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.mu.lastkey.android"
-        minSdkVersion(24)
-        targetSdkVersion(33)
+        minSdk = 24
+        targetSdk = 33
         versionCode = 1
-        versionName = "1.0-SNAPSHOT"
+        versionName = "1.0"
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.7"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
         }
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation(project(":shared"))
+    implementation("androidx.compose.ui:ui:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling:1.4.3")
+    implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
+    implementation("androidx.compose.foundation:foundation:1.4.3")
+    implementation("androidx.compose.material:material:1.4.3")
+    implementation("androidx.activity:activity-compose:1.7.1")
 }
