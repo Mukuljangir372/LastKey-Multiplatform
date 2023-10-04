@@ -15,8 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "LastKey"
 
-includeBuild("build-logic")
-include(
-    ":app-android",
-    ":shared"
-)
+include(":app-android")
+include(":shared")
