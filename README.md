@@ -1,6 +1,8 @@
 # LastKey-Multiplatform
 🔑 LastKey is a kotlin compose multi-platform application for managing passwords, notes etc. 
 
+---
+
 ### Tech Stack
 1. Compose Multiplatform
 2. Kotlin Coroutines
@@ -20,9 +22,13 @@
 16. Okio (By Square)
 17. Gradle Version Catalog
 
+---
+
 ### Architecture
 
 LastKey following MVVM architecture with multi-module approach.
+
+---
 
 ### Contribution
 
