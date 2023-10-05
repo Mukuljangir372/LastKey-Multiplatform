@@ -9,14 +9,18 @@ androidMinSdk = "24"
 
 agp = "8.1.1"
 kotlin = "1.9.0"
+klint = "11.4.2"
+ktlintGradle = "11.4.2"
 
 [libraries]
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ktlint-gradle = { module = "org.jlleitschuh.gradle:ktlint-gradle", version.ref = "ktlintGradle" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+klint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "klint" }
 
 [bundles]
 
