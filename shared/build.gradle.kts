@@ -27,6 +27,7 @@ kotlin {
         podfile = project.file("../app-ios/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
 

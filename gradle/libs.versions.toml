@@ -1,5 +1,6 @@
 [versions]
-applicationId = "com.mu.lastkey.android"
+applicationId = "com.mu.lastkey"
+androidApplicationId = "com.mu.lastkey.android"
 applicationVersionName = "1.0"
 applicationVersionCode = "1"
 
@@ -7,8 +8,8 @@ androidCompileSdk = "33"
 androidTargetSdk = "33"
 androidMinSdk = "24"
 
-agp = "8.1.1"
-kotlin = "1.9.0"
+agp = "8.0.2"
+kotlin = "1.8.20"
 klint = "11.4.2"
 ktlintGradle = "11.4.2"
 

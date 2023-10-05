@@ -17,6 +17,9 @@ gradlePlugin {
                 implementationClass = className
             }
         }
-        createPlugin("com.mu.lastkey.kmm", "com.mu.lastkey.build.logic.convention.KMMConventionPlugin")
+        createPlugin(
+            id = "com.mu.lastkey.kmm",
+            className = "com.mu.lastkey.build.logic.convention.KMMConventionPlugin"
+        )
     }
 }
