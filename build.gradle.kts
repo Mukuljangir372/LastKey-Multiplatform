@@ -4,6 +4,9 @@ buildscript {
         mavenCentral()
         maven("https://plugins.gradle.org/m2/")
     }
+    dependencies {
+        classpath(libs.ktlint.gradle)
+    }
 }
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -11,6 +14,13 @@ plugins {
     alias(libs.plugins.android.library).apply(false)
     kotlin("android").version(libs.versions.kotlin.get()).apply(false)
     kotlin("multiplatform").version(libs.versions.kotlin.get()).apply(false)
+}
+allprojects {
+    apply { plugin("org.jlleitschuh.gradle.ktlint") }
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
