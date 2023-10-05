@@ -10,5 +10,5 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.core.utils"
+    namespace = "com.mu.lastkey.core.preferences"
 }
