@@ -10,5 +10,6 @@ internal fun Project.version(key: String) = extensions
 
 internal fun Project.versionInt(key: String) = version(key).toInt()
 
+internal val Project.APPLICATION_ID get() = version("applicationId")
 internal val Project.ANDROID_COMPILE_SDK_VERSION get() = versionInt("androidCompileSdk")
 internal val Project.ANDROID_MIN_SDK_VERSION get() = versionInt("androidMinSdk")

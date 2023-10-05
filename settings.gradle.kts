@@ -17,5 +17,13 @@ rootProject.name = "LastKey"
 includeBuild("build-logic")
 include(
     ":app-android",
-    ":shared"
+    ":shared",
+    ":core-network",
+    ":core-database",
+    ":core-preferences",
+    ":core-logging",
+    ":core-ui",
+    ":core-data",
+    ":core-domain",
+    ":core-utils"
 )
