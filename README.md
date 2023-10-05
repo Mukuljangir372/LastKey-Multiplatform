@@ -5,7 +5,7 @@ LastKey is a kotlin compose multi-platform application for managing passwords, n
 
 ---
 
-### Tech Stack
+## Tech Stack
 1. Compose Multiplatform
 2. Kotlin Coroutines
 3. Ktor
@@ -26,17 +26,17 @@ LastKey is a kotlin compose multi-platform application for managing passwords, n
 
 ---
 
-### Architecture
+## Architecture
 
 LastKey following MVVM architecture with multi-module approach.
 
 ---
 
-### Contribution
+## Contribution
 
 Contributions are appreciated, but must conform to LastKey Guidelines.
 
-#### Branch naming
+### Branch naming
 
 Branch names must respect the pattern `type/description-of-the-change`.
 
@@ -53,5 +53,5 @@ _description of change_ must be a concise and meaningful description of what is 
 
 The whole name of the branch must be lower case.
 
-#### Code style and pattern
+### Code style and pattern
 Make sure, you run `./gradlew ktlintformat` before your pull request.
