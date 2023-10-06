@@ -40,7 +40,8 @@ internal fun SignInUiScreenContent() {
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
         Column(
             modifier = Modifier.fillMaxSize().padding(paddingValues),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Logo()
             SignIn()
