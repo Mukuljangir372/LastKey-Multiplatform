@@ -10,20 +10,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.mu.lastkey.core.ui.calculateLocalWindow
+import com.mu.lastkey.core.ui.resource.AppStrings
 
 // Guidelines - https://m3.material.io/styles/color/the-color-system/color-roles
 // Figma - https://www.figma.com/community/file/1248805263844976008/Build-a-Material-color-scheme
 
 private fun getLightColorScheme(): ColorScheme {
     return lightColorScheme(
-        primary = LastKeyColors.Blue400,
+        primary = LastKeyColors.Black1000,
         onPrimary = LastKeyColors.White1000,
-        primaryContainer = LastKeyColors.Blue100,
-        onPrimaryContainer = LastKeyColors.Blue500,
-        secondary = LastKeyColors.Orange1000,
+        primaryContainer = LastKeyColors.Black800,
+        onPrimaryContainer = LastKeyColors.Black900,
+        secondary = LastKeyColors.Black800,
         onSecondary = LastKeyColors.White1000,
-        secondaryContainer = LastKeyColors.Orange500,
-        onSecondaryContainer = LastKeyColors.Orange1100,
+        secondaryContainer = LastKeyColors.Black800,
+        onSecondaryContainer = LastKeyColors.Black900,
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.White1000,
         tertiaryContainer = LastKeyColors.Blue200,
@@ -41,14 +42,14 @@ private fun getLightColorScheme(): ColorScheme {
 
 private fun getDarkColorScheme(): ColorScheme {
     return darkColorScheme(
-        primary = LastKeyColors.Blue400,
+        primary = LastKeyColors.Black1000,
         onPrimary = LastKeyColors.White1000,
-        primaryContainer = LastKeyColors.Blue100,
-        onPrimaryContainer = LastKeyColors.Blue500,
-        secondary = LastKeyColors.Orange1000,
+        primaryContainer = LastKeyColors.Black800,
+        onPrimaryContainer = LastKeyColors.Black900,
+        secondary = LastKeyColors.Black800,
         onSecondary = LastKeyColors.Black1000,
-        secondaryContainer = LastKeyColors.Orange500,
-        onSecondaryContainer = LastKeyColors.Orange1100,
+        secondaryContainer = LastKeyColors.Black800,
+        onSecondaryContainer = LastKeyColors.Black900,
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.Black1000,
         tertiaryContainer = LastKeyColors.Blue200,
@@ -70,6 +71,7 @@ internal val LocalWindow = staticCompositionLocalOf { LastKeyWindow.default }
 internal val LocalShapes = staticCompositionLocalOf { LastKeyShapes.compat }
 internal val LocalColors = staticCompositionLocalOf { getLightColorScheme() }
 internal val LocalTypo = staticCompositionLocalOf { Typography() }
+internal val LocalAppStrings = staticCompositionLocalOf { AppStrings.en }
 
 @Composable
 fun LastKeyUiTheme(

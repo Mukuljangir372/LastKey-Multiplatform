@@ -29,6 +29,7 @@ kotlin {
         version = "1.0"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../app-ios/Podfile")
+        extraSpecAttributes["resources"] = "['src/commonMain/resources/**', 'src/iosMain/resources/**']"
         framework {
             baseName = "shared"
             isStatic = true
@@ -37,6 +38,7 @@ kotlin {
 
     sourceSets {
         val commonMain by getting {
+            resources.srcDir("src/commonMain/resources")
             dependencies {
                 implementation(libs.kodein)
                 api(project(":core-data"))
@@ -52,10 +54,26 @@ kotlin {
                 api(project(":feature:login:ui"))
             }
         }
+
+        val androidMain by getting {
+            dependsOn(commonMain)
+        }
+
+        val iosX64Main by getting
+        val iosArm64Main by getting
+        val iosSimulatorArm64Main by getting
+        val iosMain by getting {
+            resources.srcDir("src/commonMain/resources")
+            dependsOn(commonMain)
+            iosX64Main.dependsOn(this)
+            iosArm64Main.dependsOn(this)
+            iosSimulatorArm64Main.dependsOn(this)
+        }
     }
 }
 
 android {
+    sourceSets["main"].res.srcDir("src/commonMain/resources")
     namespace = "com.mu.lastkey"
     compileSdk = 33
     defaultConfig {
