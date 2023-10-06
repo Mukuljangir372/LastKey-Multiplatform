@@ -1,7 +1,11 @@
+@file:Suppress("UnstableApiUsage")
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    alias(libs.plugins.compose)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -34,12 +38,18 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // put your multiplatform dependencies here
-            }
-        }
-        val commonTest by getting {
-            dependencies {
-                implementation(kotlin("test"))
+                implementation(libs.kodein)
+                api(project(":core-data"))
+                api(project(":core-domain"))
+                api(project(":core-ui"))
+                api(project(":core-database"))
+                api(project(":core-logging"))
+                api(project(":core-network"))
+                api(project(":core-preferences"))
+                api(project(":core-utils"))
+                api(project(":feature:login:data"))
+                api(project(":feature:login:domain"))
+                api(project(":feature:login:ui"))
             }
         }
     }
@@ -50,5 +60,8 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+    }
+    buildFeatures {
+        compose = true
     }
 }

@@ -72,7 +72,7 @@ internal val LocalColors = staticCompositionLocalOf { getLightColorScheme() }
 internal val LocalTypo = staticCompositionLocalOf { Typography() }
 
 @Composable
-fun ScogoThemeUi(
+fun LastKeyUiTheme(
     isDarkMode: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {

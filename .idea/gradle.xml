@@ -34,6 +34,11 @@
             <option value="$PROJECT_DIR$/core-preferences" />
             <option value="$PROJECT_DIR$/core-ui" />
             <option value="$PROJECT_DIR$/core-utils" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/login" />
+            <option value="$PROJECT_DIR$/feature/login/data" />
+            <option value="$PROJECT_DIR$/feature/login/domain" />
+            <option value="$PROJECT_DIR$/feature/login/ui" />
             <option value="$PROJECT_DIR$/shared" />
           </set>
         </option>
