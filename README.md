@@ -6,33 +6,33 @@ LastKey is a kotlin compose multi-platform application for managing passwords, n
 ---
 
 ## Tech Stack
-1. Compose Multiplatform
-2. Kotlin Coroutines
-3. Ktor
-4. SQLDelight
-5. Kodein (DI)
-6. Napier (Logging)
-7. Ktlint (Lint)
-8. androidx-Datastore (Key-Pair values)
-9. Voyager (Navigation)
-10. Mockative (Testing)
-11. KSP
-12. Kotlin AtomicFu (Atomic Operations)
-13. Kotlin Serialization
-14. Kotln DateTime
-15. Kotlin Test (Testing)
-16. Okio (By Square)
-17. Gradle Version Catalog
+✅ Compose Multiplatform\
+✅ Kotlin Coroutines\
+✅ Ktor\
+✅ SQLDelight\
+✅ Kodein (DI)\
+✅ Napier (Logging)\
+✅ Ktlint (Lint)\
+✅ androidx-Datastore (Key-Pair values)\
+✅ Voyager (Navigation)\
+✅ Mockative (Testing)\
+✅ KSP\
+✅ Kotlin AtomicFu (Atomic Operations)\
+✅ Kotlin Serialization\
+✅ Kotln DateTime\
+✅ Kotlin Test (Testing)\
+✅ Okio (By Square)\
+✅ Gradle Version Catalog
 
 ---
 
-## Architecture
+## 🚗 Architecture
 
 LastKey following MVVM architecture with multi-module approach.
 
 ---
 
-## Contribution
+## 🪢 Contribution
 
 Contributions are appreciated, but must conform to LastKey Guidelines.
 
