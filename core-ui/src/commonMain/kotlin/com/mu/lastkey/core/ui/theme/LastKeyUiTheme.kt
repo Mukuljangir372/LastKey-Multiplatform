@@ -21,10 +21,10 @@ private fun getLightColorScheme(): ColorScheme {
         onPrimary = LastKeyColors.White1000,
         primaryContainer = LastKeyColors.Black800,
         onPrimaryContainer = LastKeyColors.Black900,
-        secondary = LastKeyColors.Black800,
+        secondary = LastKeyColors.Blue200,
         onSecondary = LastKeyColors.White1000,
-        secondaryContainer = LastKeyColors.Black800,
-        onSecondaryContainer = LastKeyColors.Black900,
+        secondaryContainer = LastKeyColors.Blue100,
+        onSecondaryContainer = LastKeyColors.White1000,
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.White1000,
         tertiaryContainer = LastKeyColors.Blue200,
@@ -42,13 +42,13 @@ private fun getLightColorScheme(): ColorScheme {
 
 private fun getDarkColorScheme(): ColorScheme {
     return darkColorScheme(
-        primary = LastKeyColors.Black1000,
-        onPrimary = LastKeyColors.White1000,
-        primaryContainer = LastKeyColors.Black800,
-        onPrimaryContainer = LastKeyColors.Black900,
-        secondary = LastKeyColors.Black800,
+        primary = LastKeyColors.White1000,
+        onPrimary = LastKeyColors.Black1000,
+        primaryContainer = LastKeyColors.White1000,
+        onPrimaryContainer = LastKeyColors.Black1000,
+        secondary = LastKeyColors.Blue200,
         onSecondary = LastKeyColors.Black1000,
-        secondaryContainer = LastKeyColors.Black800,
+        secondaryContainer = LastKeyColors.Blue100,
         onSecondaryContainer = LastKeyColors.Black900,
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.Black1000,
@@ -59,9 +59,9 @@ private fun getDarkColorScheme(): ColorScheme {
         errorContainer = LastKeyColors.Red500,
         onErrorContainer = LastKeyColors.Red1100,
         surface = LastKeyColors.Black1000,
-        onSurface = LastKeyColors.Black1000,
+        onSurface = LastKeyColors.White1000,
         background = LastKeyColors.Black1000,
-        onBackground = LastKeyColors.Black1000
+        onBackground = LastKeyColors.White1000
     )
 }
 

@@ -3,7 +3,6 @@ package com.mu.lastkey.core.utils.di
 import com.mu.lastkey.core.utils.coroutine.AppCoroutineDispatchers
 import com.mu.lastkey.core.utils.device.DeviceConfig
 import com.mu.lastkey.core.utils.json.JsonFactory
-import com.mu.lastkey.core.utils.strings.AppStrings
 import com.mu.lastkey.core.utils.validation.BasicValidator
 import com.mu.lastkey.core.utils.validation.BasicValidatorImpl
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +17,6 @@ fun getBaseModule(): DI.Module {
     return DI.Module("baseModule") {
         bindSingleton { provideJson() }
         bindSingleton { provideAppCoroutineDispatchers() }
-        bindSingleton { provideAppStrings() }
         bindSingleton { provideDeviceConfig() }
         bindSingleton { provideBasicValidator() }
     }
@@ -34,10 +32,6 @@ private fun provideAppCoroutineDispatchers(): AppCoroutineDispatchers {
         main = Dispatchers.Main,
         default = Dispatchers.Default
     )
-}
-
-private fun provideAppStrings(): AppStrings {
-    return AppStrings.en
 }
 
 private fun provideDeviceConfig(): DeviceConfig {
