@@ -2,17 +2,18 @@ package com.mu.lastkey.core.preferences
 
 import android.content.Context
 import com.mu.lastkey.core.preferences.store.PreferencesStoreConfig
-import com.mu.lastkey.core.utils.di.AndroidContext
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
-import org.kodein.di.instance
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-actual fun getPreferencesPlatformModule(): DI.Module {
-    return DI.Module(name = "preferencesPlatformModule") {
-        bindSingleton { providePreferencesStoreConfig(instance(tag = AndroidContext)) }
+actual fun getPreferencesPlatformModule(): Module {
+    return module {
+        single { providePreferencesStoreConfig(androidContext()) }
     }
 }
 
-private fun providePreferencesStoreConfig(context: Context): PreferencesStoreConfig {
+private fun providePreferencesStoreConfig(
+    context: Context
+): PreferencesStoreConfig {
     return PreferencesStoreConfig(storageDirPath = context.filesDir.absolutePath)
 }

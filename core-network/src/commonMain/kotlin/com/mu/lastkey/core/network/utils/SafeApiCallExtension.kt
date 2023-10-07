@@ -1,4 +1,4 @@
-package com.mu.lastkey.core.network
+package com.mu.lastkey.core.network.utils
 
 import com.mu.lastkey.core.utils.model.ResultWrapper
 import io.ktor.client.call.body

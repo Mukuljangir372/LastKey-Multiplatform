@@ -6,6 +6,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 api(libs.napier)
+                implementation(libs.koin)
             }
         }
     }

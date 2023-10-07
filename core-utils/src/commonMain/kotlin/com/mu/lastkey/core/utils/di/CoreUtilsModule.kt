@@ -8,17 +8,15 @@ import com.mu.lastkey.core.utils.validation.BasicValidatorImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.serialization.json.Json
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-const val AndroidContext = "androidContext"
-
-fun getBaseModule(): DI.Module {
-    return DI.Module("baseModule") {
-        bindSingleton { provideJson() }
-        bindSingleton { provideAppCoroutineDispatchers() }
-        bindSingleton { provideDeviceConfig() }
-        bindSingleton { provideBasicValidator() }
+fun getCoreUtilsModule(): Module {
+    return module {
+        single { provideJson() }
+        single { provideAppCoroutineDispatchers() }
+        single { provideDeviceConfig() }
+        single { provideBasicValidator() }
     }
 }
 

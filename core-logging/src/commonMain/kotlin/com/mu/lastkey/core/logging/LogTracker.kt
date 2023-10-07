@@ -1,4 +1,4 @@
-package com.mu.lastkey.core.logging.api
+package com.mu.lastkey.core.logging
 
 interface LogTracker {
     fun info(message: String, attrs: Map<String, Any>)

@@ -1,6 +1,5 @@
-package com.mu.lastkey.core.logging.impl
+package com.mu.lastkey.core.logging
 
-import com.mu.lastkey.core.logging.api.LogTracker
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 

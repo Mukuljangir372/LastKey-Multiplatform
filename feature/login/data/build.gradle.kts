@@ -6,7 +6,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-data"))
-                implementation(libs.kodein)
+                implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
                 implementation(libs.kotlin.serializaton)
                 implementation(libs.kotlinx.datetime)

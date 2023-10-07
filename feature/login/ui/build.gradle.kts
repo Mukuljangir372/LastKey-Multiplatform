@@ -9,7 +9,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-ui"))
-                implementation(libs.kodein)
+                implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
             }
         }

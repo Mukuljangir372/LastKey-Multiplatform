@@ -1,6 +1,4 @@
-package com.mu.lastkey.core.logging.fake
-
-import com.mu.lastkey.core.logging.api.LogTracker
+package com.mu.lastkey.core.logging
 
 class FakeLogTracker : LogTracker {
     override fun info(message: String, attrs: Map<String, Any>) {

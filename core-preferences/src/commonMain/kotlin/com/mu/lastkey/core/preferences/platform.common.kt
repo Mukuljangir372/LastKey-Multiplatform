@@ -1,5 +1,5 @@
 package com.mu.lastkey.core.preferences
 
-import org.kodein.di.DI
+import org.koin.core.module.Module
 
-expect fun getPreferencesPlatformModule(): DI.Module
+expect fun getPreferencesPlatformModule(): Module
