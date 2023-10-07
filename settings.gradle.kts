@@ -25,5 +25,10 @@ include(
     ":core-ui",
     ":core-data",
     ":core-domain",
-    ":core-utils"
+    ":core-utils",
+    ":feature",
+    ":feature:login",
+    ":feature:login:data",
+    ":feature:login:domain",
+    ":feature:login:ui"
 )
