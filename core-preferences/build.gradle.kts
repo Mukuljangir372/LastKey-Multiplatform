@@ -5,7 +5,6 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-utils"))
                 api(libs.androidx.datastore.core)
                 api(libs.androidx.datastore.okio)
                 implementation(libs.kotlin.coroutines.core)

@@ -1,4 +1,4 @@
-package com.mu.lastkey.core.utils.model
+package com.mu.lastkey.core.ui.model
 
 import com.mu.lastkey.core.utils.generateUUID
 

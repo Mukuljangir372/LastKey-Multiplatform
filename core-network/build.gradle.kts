@@ -11,7 +11,6 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-utils"))
                 implementation(project(":core-logging"))
                 api(libs.ktor.client.core)
                 api(libs.ktor.client.content.negotation)

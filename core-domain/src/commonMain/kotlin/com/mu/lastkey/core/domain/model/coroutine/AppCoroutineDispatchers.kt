@@ -1,4 +1,4 @@
-package com.mu.lastkey.core.utils.coroutine
+package com.mu.lastkey.core.domain.model.coroutine
 
 import kotlinx.coroutines.CoroutineDispatcher
 

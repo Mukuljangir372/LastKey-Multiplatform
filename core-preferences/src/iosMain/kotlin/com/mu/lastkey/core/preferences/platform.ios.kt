@@ -7,7 +7,7 @@ import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
-actual fun getPreferencesPlatformModule(): Module {
+actual fun getCorePreferencesPlatformModule(): Module {
     return module {
         single { providePreferencesStoreConfig() }
     }
