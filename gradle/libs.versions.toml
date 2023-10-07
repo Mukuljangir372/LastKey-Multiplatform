@@ -16,12 +16,13 @@ ktlintGradle = "11.4.2"
 coroutines = "1.7.2"
 ktor = "2.3.2"
 sqldelight = "2.0.0"
-kodein = "7.20.1"
 napier = "2.6.1"
 datastore = "1.1.0-alpha04"
 voyager = "1.0.0-rc05"
 mockative = "1.4.1"
 ksp = "1.8.20-1.0.10"
+realm = "1.11.0"
+koin = "3.2.0"
 
 compose = "1.4.1"
 composeKotlinCompilerExtension = "1.4.6"
@@ -35,6 +36,7 @@ sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+realm = { id = "io.realm.kotlin", version.ref = "realm" }
 
 ## LIBRARIES
 [libraries]
@@ -68,10 +70,11 @@ ktor-client-auth = { module = "io.ktor:ktor-client-auth", version.ref = "ktor" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-content-negotation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor"}
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 ktor-server-test = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 
-kodein = { module = "org.kodein.di:kodein-di", version.ref = "kodein" }
+koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
@@ -83,7 +86,10 @@ sqldelight-primitive = { module = "app.cash.sqldelight:primitive-adapters", vers
 
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
-voyager-kodein = { module = "cafe.adriel.voyager:voyager-kodein", version.ref = "voyager" }
+voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
+
+realm = { module = "io.realm.kotlin:library-base", version.ref = "realm" }
+realm-sync = { module = "io.realm.kotlin:library-sync", version.ref = "realm" }
 
 [bundles]
-voyager = ["voyager-navigator", "voyager-bottomSheetNavigator", "voyager-kodein"]
+voyager = ["voyager-navigator", "voyager-bottomSheetNavigator", "voyager-koin"]

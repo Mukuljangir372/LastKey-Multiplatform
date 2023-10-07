@@ -40,7 +40,7 @@ kotlin {
         val commonMain by getting {
             resources.srcDir("src/commonMain/resources")
             dependencies {
-                implementation(libs.kodein)
+                implementation(libs.koin)
                 api(project(":core-data"))
                 api(project(":core-domain"))
                 api(project(":core-ui"))

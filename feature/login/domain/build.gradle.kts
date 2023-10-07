@@ -6,9 +6,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-domain"))
-                implementation(libs.kotlin.coroutines.core)
-                implementation(libs.kotlin.serializaton)
-                implementation(libs.kotlinx.datetime)
             }
         }
     }

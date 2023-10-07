@@ -10,7 +10,7 @@ LastKey is a kotlin compose multi-platform application for managing passwords, n
 ✅ Kotlin Coroutines\
 ✅ Ktor\
 ✅ SQLDelight\
-✅ Kodein (DI)\
+✅ Koin (DI)\
 ✅ Napier (Logging)\
 ✅ Ktlint (Lint)\
 ✅ androidx-Datastore (Key-Pair values)\

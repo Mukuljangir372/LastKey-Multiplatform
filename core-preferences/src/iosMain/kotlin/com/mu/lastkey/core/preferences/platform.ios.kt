@@ -1,15 +1,15 @@
 package com.mu.lastkey.core.preferences
 
 import com.mu.lastkey.core.preferences.store.PreferencesStoreConfig
-import org.kodein.di.DI
-import org.kodein.di.bindSingleton
+import org.koin.core.module.Module
+import org.koin.dsl.module
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
-actual fun getPreferencesPlatformModule(): DI.Module {
-    return DI.Module(name = "preferencesPlatformModule") {
-        bindSingleton { providePreferencesStoreConfig() }
+actual fun getCorePreferencesPlatformModule(): Module {
+    return module {
+        single { providePreferencesStoreConfig() }
     }
 }
 
