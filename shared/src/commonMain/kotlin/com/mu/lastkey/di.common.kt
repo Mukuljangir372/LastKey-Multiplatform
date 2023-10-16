@@ -6,6 +6,7 @@ import com.mu.lastkey.core.network.di.getCoreNetworkModule
 import com.mu.lastkey.core.preferences.di.getCorePreferencesModule
 import com.mu.lastkey.core.preferences.getCorePreferencesPlatformModule
 import com.mu.lastkey.core.utils.di.getCoreUtilsModule
+import com.mu.lastkey.feature.login.data.di.getLoginDataModule
 import org.koin.core.context.startKoin
 
 object DependencyGraph {
@@ -15,7 +16,8 @@ object DependencyGraph {
         getCorePreferencesModule(),
         getCoreUtilsModule(),
         getCorePreferencesPlatformModule(),
-        getCoreDataModule()
+        getCoreDataModule(),
+        getLoginDataModule()
     )
 
     fun load() {

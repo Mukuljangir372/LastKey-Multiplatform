@@ -7,5 +7,5 @@ import org.mongodb.kbson.ObjectId
 class UserRealmModel : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
-    var username: String = ""
+    var email: String = ""
 }
