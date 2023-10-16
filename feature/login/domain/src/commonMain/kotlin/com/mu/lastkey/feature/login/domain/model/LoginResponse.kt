@@ -1,3 +1,3 @@
 package com.mu.lastkey.feature.login.domain.model
 
-class LoginResponse
+data class LoginResponse(val loggedInUserId: String)

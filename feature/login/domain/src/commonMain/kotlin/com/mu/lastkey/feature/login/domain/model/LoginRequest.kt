@@ -1,3 +1,6 @@
 package com.mu.lastkey.feature.login.domain.model
 
-class LoginRequest
+data class LoginRequest(
+    val email: String,
+    val password: String
+)

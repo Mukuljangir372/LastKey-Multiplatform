@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS authUserEntity (
+  id TEXT PRIMARY KEY NOT NULL,
+  email TEXT NOT NULL
+);
+
+insertOrUpdateUser:
+INSERT OR REPLACE INTO authUserEntity (id, email)
+VALUES (?, ?);
+
+getUserById:
+SELECT * FROM authUserEntity WHERE id = ?;

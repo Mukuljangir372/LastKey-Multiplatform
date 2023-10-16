@@ -8,6 +8,9 @@ import com.mu.lastkey.feature.login.data.network.api.LoginApi
 import com.mu.lastkey.feature.login.data.network.api.LoginApiImpl
 import com.mu.lastkey.feature.login.data.network.api.UserApi
 import com.mu.lastkey.feature.login.data.network.api.UserApiImpl
+import com.mu.lastkey.feature.login.data.repository.LoginRepositoryImpl
+import com.mu.lastkey.feature.login.domain.model.LoginResponse
+import com.mu.lastkey.feature.login.domain.repository.LoginRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -17,6 +20,7 @@ fun getLoginDataModule(): Module {
         single { provideLoginApi(get()) }
         single { provideUserApi(get()) }
         single { provideLoginNetworkDataSource(get(), get(), get<AppCoroutineDispatchers>().io) }
+        single { provideLoginRepository(get(), get<AppCoroutineDispatchers>().default) }
     }
 }
 
@@ -36,6 +40,16 @@ private fun provideLoginNetworkDataSource(
     return LoginNetworkDataSourceImpl(
         loginApi = loginApi,
         userApi = userApi,
+        coroutineDispatcher = coroutineDispatcher
+    )
+}
+
+private fun provideLoginRepository(
+    loginNetworkDataSource: LoginNetworkDataSource,
+    coroutineDispatcher: CoroutineDispatcher
+): LoginRepository {
+    return LoginRepositoryImpl(
+        networkSource = loginNetworkDataSource,
         coroutineDispatcher = coroutineDispatcher
     )
 }
