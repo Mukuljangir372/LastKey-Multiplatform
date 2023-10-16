@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+/src/commonMain/kotlin/com/mu/lastkey/core/network/realm/RealmConfigFactory.kt
+
+
+
+
