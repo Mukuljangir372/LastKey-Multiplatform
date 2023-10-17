@@ -16,7 +16,8 @@ object TextFields {
     fun Primary(
         modifier: Modifier,
         value: String,
-        placeholder: @Composable () -> Unit = {}
+        placeholder: @Composable () -> Unit = {},
+        onValueChange: (String) -> Unit
     ) {
         OutlinedTextField(
             modifier = modifier.border(
@@ -26,7 +27,7 @@ object TextFields {
             ),
             value = value,
             placeholder = placeholder,
-            onValueChange = {},
+            onValueChange = onValueChange,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.Unspecified,
                 unfocusedBorderColor = Color.Unspecified
