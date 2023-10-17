@@ -196,13 +196,15 @@ private fun SignIn(
 
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.one.dp))
 
+        // NOTE: Forgot Password not yet implemented
+        /*
         Text(
             modifier = Modifier.align(Alignment.End),
             text = LastKeyTheme.strings.forgotPassword,
             style = LastKeyTheme.typo.bodySmall,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.End
-        )
+        )*/
 
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.three.dp))
 
