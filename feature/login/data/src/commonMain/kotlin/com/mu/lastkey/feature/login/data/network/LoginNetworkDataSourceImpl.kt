@@ -17,15 +17,16 @@ class LoginNetworkDataSourceImpl(
         }
     }
 
-    override suspend fun signUp(request: LoginApi.Request) {
+    override suspend fun signUp(request: LoginApi.Request): LoginApi.Response {
         return withContext(coroutineDispatcher) {
             loginApi.signUp(request)
-            val loggedInUserId = loginApi.signIn(request)
+            val signInResponse = loginApi.signIn(request)
             val user = UserRealmModel().apply {
-                _id = org.mongodb.kbson.ObjectId(loggedInUserId.loggedInUserId)
+                _id = org.mongodb.kbson.ObjectId(signInResponse.loggedInUserId)
                 email = request.email
             }
             userApi.createNewUser(user)
+            signInResponse
         }
     }
 }

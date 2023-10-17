@@ -1,0 +1,25 @@
+-- AUTH USER
+CREATE TABLE IF NOT EXISTS authUserEntity (
+  id TEXT PRIMARY KEY NOT NULL,
+  email TEXT NOT NULL
+);
+
+-- AUTH SESSIONS
+CREATE TABLE IF NOT EXISTS authSessionEntity (
+  authUserId TEXT PRIMARY KEY NOT NULL,
+  active INTEGER NOT NULL
+);
+
+insertOrReplaceAuthUser:
+INSERT OR REPLACE INTO authUserEntity (id, email)
+VALUES (?, ?);
+
+insertOrReplaceAuthSession:
+INSERT OR REPLACE INTO authSessionEntity (authUserId, active)
+VALUES (?, ?);
+
+getAuthUserById:
+SELECT * FROM authUserEntity WHERE id = ?;
+
+getActiveAuthSession:
+SELECT * FROM authSessionEntity WHERE active != 0 LIMIT 1;

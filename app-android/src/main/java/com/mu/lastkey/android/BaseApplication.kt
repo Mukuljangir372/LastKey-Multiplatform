@@ -6,6 +6,6 @@ import com.mu.lastkey.DependencyGraph
 class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        DependencyGraph.load()
+        DependencyGraph(this).load()
     }
 }
