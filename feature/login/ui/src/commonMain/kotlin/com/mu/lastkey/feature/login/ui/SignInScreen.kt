@@ -16,6 +16,11 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -23,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import com.mu.lastkey.core.ui.components.Buttons
+import com.mu.lastkey.core.ui.components.Loaders
 import com.mu.lastkey.core.ui.components.TextFields
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -35,18 +41,54 @@ class SignInScreen : Screen, KoinComponent {
 
     @Composable
     override fun Content() {
-        SignInUiScreen()
+        SignInUiScreen(viewModel)
     }
 }
 
 @Composable
-private fun SignInUiScreen() {
-    SignInUiScreenContent()
+private fun SignInUiScreen(viewModel: SignInViewModel) {
+    val state: SignInUiState by viewModel.uiState.collectAsState(SignInUiState.Idle)
+
+    LaunchedEffect(Unit) {
+        viewModel.start()
+    }
+
+    when (state) {
+        is SignInUiState.SignIn -> {
+            SignInUiScreenContent(
+                email = (state as SignInUiState.SignIn).email,
+                password = (state as SignInUiState.SignIn).password,
+                signInLoading = (state as SignInUiState.SignIn).loading,
+                onEmailChange = viewModel::onEmailChange,
+                onPasswordChange = viewModel::onPasswordChange,
+                signIn = viewModel::signIn,
+                signUp = viewModel::signUp
+            )
+        }
+
+        is SignInUiState.SignUp -> {
+            // TODO: Navigate to Sign Up Screen
+        }
+
+        is SignInUiState.Success -> {
+            // TODO: Navigate to Dashboard Screen
+        }
+
+        else -> {}
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SignInUiScreenContent() {
+internal fun SignInUiScreenContent(
+    email: String,
+    password: String,
+    signInLoading: Boolean,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    signIn: () -> Unit,
+    signUp: () -> Unit
+) {
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(paddingValues),
@@ -61,7 +103,15 @@ internal fun SignInUiScreenContent() {
             }
 
             item {
-                SignIn()
+                SignIn(
+                    email = email,
+                    password = password,
+                    signInLoading = signInLoading,
+                    onEmailChange = onEmailChange,
+                    onPasswordChange = onPasswordChange,
+                    signIn = signIn,
+                    signUp = signUp
+                )
             }
         }
     }
@@ -99,7 +149,26 @@ private fun Logo() {
 }
 
 @Composable
-private fun SignIn() {
+private fun SignIn(
+    email: String,
+    password: String,
+    signInLoading: Boolean,
+    onEmailChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    signIn: () -> Unit,
+    signUp: () -> Unit
+) {
+    val emailState = remember { mutableStateOf(email) }
+    val passwordState = remember { mutableStateOf(password) }
+
+    LaunchedEffect(emailState.value) {
+        onEmailChange(emailState.value)
+    }
+
+    LaunchedEffect(passwordState.value) {
+        onPasswordChange(passwordState.value)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -107,14 +176,22 @@ private fun SignIn() {
     ) {
         TextFields.Primary(
             modifier = Modifier.fillMaxWidth(),
-            value = "Username"
+            value = emailState.value,
+            onValueChange = { emailState.value = it },
+            placeholder = {
+                Text(LastKeyTheme.strings.email)
+            }
         )
 
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.two.dp))
 
         TextFields.Primary(
             modifier = Modifier.fillMaxWidth(),
-            value = "Password"
+            value = passwordState.value,
+            onValueChange = { passwordState.value = it },
+            placeholder = {
+                Text(LastKeyTheme.strings.password)
+            }
         )
 
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.one.dp))
@@ -131,10 +208,15 @@ private fun SignIn() {
 
         Buttons.Primary(
             modifier = Modifier.fillMaxWidth(),
-            onClick = {}
-        ) {
-            Text(LastKeyTheme.strings.login)
-        }
+            onClick = signIn,
+            content = {
+                if (!signInLoading) {
+                    Text(LastKeyTheme.strings.login)
+                } else {
+                    Loaders.Primary(modifier = Modifier)
+                }
+            }
+        )
 
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.two.dp))
 
@@ -144,10 +226,11 @@ private fun SignIn() {
 
         Buttons.PrimaryOutlined(
             modifier = Modifier.fillMaxWidth(),
-            onClick = {}
-        ) {
-            Text(LastKeyTheme.strings.createNewAccount)
-        }
+            onClick = signUp,
+            content = {
+                Text(LastKeyTheme.strings.createNewAccount)
+            }
+        )
     }
 }
 

@@ -10,7 +10,9 @@ data class AppStrings(
     val login: String,
     val createNewAccount: String,
     val or: String,
-    val forgotPassword: String
+    val forgotPassword: String,
+    val email: String,
+    val password: String
 ) {
     companion object {
         val en = AppStrings(
@@ -20,7 +22,9 @@ data class AppStrings(
             login = "Continue to Login",
             createNewAccount = "Create New Account",
             or = "OR",
-            forgotPassword = "Forgot Password?"
+            forgotPassword = "Forgot Password?",
+            email = "Email",
+            password = "Password"
         )
     }
 }
