@@ -1,7 +1,6 @@
 plugins {
     id("com.mu.lastkey.kmm")
     alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.sqldelight)
 }
 kotlin {
     sourceSets {

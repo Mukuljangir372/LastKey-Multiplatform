@@ -27,8 +27,12 @@ import com.mu.lastkey.core.ui.components.TextFields
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class SignInScreen : Screen {
+class SignInScreen : Screen, KoinComponent {
+    private val viewModel: SignInViewModel by inject()
+
     @Composable
     override fun Content() {
         SignInUiScreen()

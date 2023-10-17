@@ -1,10 +1,12 @@
 package com.mu.lastkey.feature.login.domain.repository
 
 import com.mu.lastkey.core.domain.model.wrapper.ResultWrapper
-import com.mu.lastkey.feature.login.domain.model.LoginRequest
-import com.mu.lastkey.feature.login.domain.model.LoginResponse
+import com.mu.lastkey.feature.login.domain.model.SignInRequest
+import com.mu.lastkey.feature.login.domain.model.SignInResponse
+import com.mu.lastkey.feature.login.domain.model.SignUpRequest
+import com.mu.lastkey.feature.login.domain.model.SignUpResponse
 
 interface LoginRepository {
-    suspend fun signIn(request: LoginRequest): ResultWrapper<LoginResponse>
-    suspend fun signUp(request: LoginRequest): ResultWrapper<LoginResponse>
+    suspend fun signIn(request: SignInRequest): ResultWrapper<SignInResponse>
+    suspend fun signUp(request: SignUpRequest): ResultWrapper<SignUpResponse>
 }
