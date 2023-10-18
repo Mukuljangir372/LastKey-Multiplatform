@@ -13,7 +13,7 @@ data class AppStrings(
     val signedInSuccess: String,
     val signedUpSuccess: String,
     val enterValidEmail: String,
-    val enterValidPassword: String,
+    val enterValidPassword: String
 ) {
     companion object {
         val en = AppStrings(

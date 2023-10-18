@@ -53,58 +53,60 @@ class SignInScreen : Screen, KoinComponent {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SignInUiScreen(
     viewModel: SignInViewModel,
     navigateToSignUp: () -> Unit
 ) {
     val state: SignInUiState by viewModel.uiState.collectAsState(SignInUiState.Idle)
+    val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
         viewModel.start()
     }
 
-    when (state) {
-        is SignInUiState.SignIn -> {
-            val snackbarHostState = remember { SnackbarHostState() }
+    LaunchedEffect((state as? SignInUiState.SignIn)?.message?.id) {
+        val message = (state as? SignInUiState.SignIn)?.message?.message
+        if (!message.isNullOrBlank()) {
+            snackbarHostState.showSnackbar(message)
+            viewModel.onMessageShown((state as SignInUiState.SignIn).message.id)
+        }
+    }
 
-            LaunchedEffect((state as SignInUiState.SignIn).message.id) {
-                val message = (state as SignInUiState.SignIn).message.message
-                if (message.isNotBlank()) {
-                    snackbarHostState.showSnackbar(message)
-                    viewModel.onMessageShown((state as SignInUiState.SignIn).message.id)
-                }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { _ ->
+        when (state) {
+            is SignInUiState.SignIn -> {
+                SignInUiScreenContent(
+                    email = (state as SignInUiState.SignIn).email,
+                    password = (state as SignInUiState.SignIn).password,
+                    signInLoading = (state as SignInUiState.SignIn).loading,
+                    onEmailChange = viewModel::onEmailChange,
+                    onPasswordChange = viewModel::onPasswordChange,
+                    signIn = viewModel::signIn,
+                    signUp = viewModel::signUp
+                )
             }
 
-            SignInUiScreenContent(
-                snackbarHostState = snackbarHostState,
-                email = (state as SignInUiState.SignIn).email,
-                password = (state as SignInUiState.SignIn).password,
-                signInLoading = (state as SignInUiState.SignIn).loading,
-                onEmailChange = viewModel::onEmailChange,
-                onPasswordChange = viewModel::onPasswordChange,
-                signIn = viewModel::signIn,
-                signUp = viewModel::signUp
-            )
-        }
+            is SignInUiState.SignUp -> {
+                viewModel.onSignUp()
+                navigateToSignUp()
+            }
 
-        is SignInUiState.SignUp -> {
-            viewModel.onSignUp()
-            navigateToSignUp()
-        }
+            is SignInUiState.Success -> {
+                // TODO: Navigate to Dashboard Screen
+            }
 
-        is SignInUiState.Success -> {
-            // TODO: Navigate to Dashboard Screen
+            else -> {}
         }
-
-        else -> {}
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SignInUiScreenContent(
-    snackbarHostState: SnackbarHostState,
     email: String,
     password: String,
     signInLoading: Boolean,
@@ -113,25 +115,20 @@ internal fun SignInUiScreenContent(
     signIn: () -> Unit,
     signUp: () -> Unit
 ) {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier.fillMaxSize().padding(paddingValues)
-        ) {
-            Logo()
-            Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
-            SignIn(
-                email = email,
-                password = password,
-                signInLoading = signInLoading,
-                onEmailChange = onEmailChange,
-                onPasswordChange = onPasswordChange,
-                signIn = signIn,
-                signUp = signUp
-            )
-        }
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Logo()
+        Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
+        SignIn(
+            email = email,
+            password = password,
+            signInLoading = signInLoading,
+            onEmailChange = onEmailChange,
+            onPasswordChange = onPasswordChange,
+            signIn = signIn,
+            signUp = signUp
+        )
     }
 }
 

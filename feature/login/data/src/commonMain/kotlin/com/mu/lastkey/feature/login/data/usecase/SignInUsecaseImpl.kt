@@ -76,7 +76,9 @@ class SignInUsecaseImpl(
             }
             return if (message.isNotBlank()) {
                 ResultWrapper.Failure(message = message)
-            } else null
+            } else {
+                null
+            }
         }
     }
 }

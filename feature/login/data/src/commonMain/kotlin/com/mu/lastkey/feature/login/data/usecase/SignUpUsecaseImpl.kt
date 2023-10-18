@@ -5,7 +5,6 @@ import com.mu.lastkey.core.domain.model.AppStrings
 import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.feature.login.domain.model.SignUpRequest
 import com.mu.lastkey.feature.login.domain.repository.LoginRepository
-import com.mu.lastkey.feature.login.domain.usecase.SignInUsecase
 import com.mu.lastkey.feature.login.domain.usecase.SignUpUsecase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
@@ -77,7 +76,9 @@ class SignUpUsecaseImpl(
             }
             return if (message.isNotBlank()) {
                 ResultWrapper.Failure(message = message)
-            } else null
+            } else {
+                null
+            }
         }
     }
 }

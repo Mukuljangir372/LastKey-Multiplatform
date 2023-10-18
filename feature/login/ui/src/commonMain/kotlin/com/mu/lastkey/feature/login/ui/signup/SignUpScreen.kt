@@ -43,65 +43,67 @@ class SignUpScreen : Screen, KoinComponent {
         val navigator = LocalNavigator.currentOrThrow
         SignUpUiScreen(
             viewModel = viewModel,
-            navigateToSignIn =  {
+            navigateToSignIn = {
                 appNavigation.signIn(navigator)
             }
         )
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SignUpUiScreen(
     viewModel: SignUpViewModel,
     navigateToSignIn: () -> Unit
 ) {
     val state: SignUpUiState by viewModel.uiState.collectAsState(SignUpUiState.Idle)
+    val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
         viewModel.start()
     }
 
-    when (state) {
-        is SignUpUiState.SignUp -> {
-            val snackbarHostState = remember { SnackbarHostState() }
+    LaunchedEffect((state as? SignUpUiState.SignUp)?.message?.id) {
+        val message = (state as? SignUpUiState.SignUp)?.message?.message
+        if (!message.isNullOrBlank()) {
+            snackbarHostState.showSnackbar(message)
+            viewModel.onMessageShown((state as SignUpUiState.SignUp).message.id)
+        }
+    }
 
-            LaunchedEffect((state as SignUpUiState.SignUp).message.id) {
-                val message = (state as SignUpUiState.SignUp).message.message
-                if (message.isNotBlank()) {
-                    snackbarHostState.showSnackbar(message)
-                    viewModel.onMessageShown((state as SignUpUiState.SignUp).message.id)
-                }
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { _ ->
+        when (state) {
+            is SignUpUiState.SignUp -> {
+                SignUpUiScreenContent(
+                    email = (state as SignUpUiState.SignUp).email,
+                    password = (state as SignUpUiState.SignUp).password,
+                    signUpLoading = (state as SignUpUiState.SignUp).loading,
+                    onEmailChange = viewModel::onEmailChange,
+                    onPasswordChange = viewModel::onPasswordChange,
+                    signIn = viewModel::signIn,
+                    signUp = viewModel::signUp
+                )
             }
 
-            SignUpUiScreenContent(
-                snackbarHostState = snackbarHostState,
-                email = (state as SignUpUiState.SignUp).email,
-                password = (state as SignUpUiState.SignUp).password,
-                signUpLoading = (state as SignUpUiState.SignUp).loading,
-                onEmailChange = viewModel::onEmailChange,
-                onPasswordChange = viewModel::onPasswordChange,
-                signIn = viewModel::signIn,
-                signUp = viewModel::signUp
-            )
-        }
+            is SignUpUiState.SignIn -> {
+                viewModel.onSignIn()
+                navigateToSignIn()
+            }
 
-        is SignUpUiState.SignIn -> {
-            viewModel.onSignIn()
-            navigateToSignIn()
-        }
+            is SignUpUiState.Success -> {
+                // TODO: Navigate to Dashboard Screen
+            }
 
-        is SignUpUiState.Success -> {
-            // TODO: Navigate to Dashboard Screen
+            else -> {}
         }
-
-        else -> {}
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SignUpUiScreenContent(
-    snackbarHostState: SnackbarHostState,
     email: String,
     password: String,
     signUpLoading: Boolean,
@@ -110,24 +112,19 @@ internal fun SignUpUiScreenContent(
     signIn: () -> Unit,
     signUp: () -> Unit
 ) {
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { paddingValues ->
-        Column(
-            modifier = Modifier.fillMaxSize().padding(paddingValues)
-        ) {
-            Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
-            SignUp(
-                email = email,
-                password = password,
-                signUpLoading = signUpLoading,
-                onEmailChange = onEmailChange,
-                onPasswordChange = onPasswordChange,
-                signIn = signIn,
-                signUp = signUp
-            )
-        }
+    Column(
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
+        SignUp(
+            email = email,
+            password = password,
+            signUpLoading = signUpLoading,
+            onEmailChange = onEmailChange,
+            onPasswordChange = onPasswordChange,
+            signIn = signIn,
+            signUp = signUp
+        )
     }
 }
 
