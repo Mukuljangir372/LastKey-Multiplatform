@@ -1,10 +1,10 @@
-package com.mu.lastkey.feature.login.ui.signin
+package com.mu.lastkey.feature.login.ui.signup
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.core.ui.model.MessageWrapper
-import com.mu.lastkey.feature.login.domain.usecase.SignInUsecase
+import com.mu.lastkey.feature.login.domain.usecase.SignUpUsecase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
@@ -15,14 +15,14 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class SignInViewModel(
-    private val signInUsecase: SignInUsecase,
+class SignUpViewModel(
+    private val signUpUsecase: SignUpUsecase,
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
     private var scope: CoroutineScope? = null
 
-    private val _state = MutableStateFlow(SignInState.idle)
-    val uiState: Flow<SignInUiState> get() = _state.map { mapStateToUiState(it) }
+    private val _state = MutableStateFlow(SignUpState.idle)
+    val uiState: Flow<SignUpUiState> get() = _state.map { mapStateToUiState(it) }
 
     private fun resetScope() {
         scope?.cancel()
@@ -39,12 +39,12 @@ class SignInViewModel(
         resetScope()
     }
 
-    fun signIn() {
-        signInUser()
+    fun signUp() {
+        signUpUser()
     }
 
-    fun signUp() {
-        _state.update { it.copy(signUp = true) }
+    fun signIn() {
+        _state.update { it.copy(signIn = true) }
     }
 
     fun onEmailChange(value: String) {
@@ -60,60 +60,60 @@ class SignInViewModel(
         _state.update { it.copy(message = MessageWrapper.empty) }
     }
 
-    fun onSignUp() {
-        _state.update { it.copy(signUp = false) }
+    fun onSignIn() {
+        _state.update { it.copy(signIn = false) }
     }
 
-    private var signInJob: Job? = null
-    private fun signInUser() {
-        signInJob?.cancel()
-        signInJob = scope?.launch {
-            _state.update { it.copy(signInLoading = true) }
-            val modifiedState = signInAsState(
+    private var signUpJob: Job? = null
+    private fun signUpUser() {
+        signUpJob?.cancel()
+        signUpJob = scope?.launch {
+            _state.update { it.copy(signUpLoading = true) }
+            val modifiedState = signUpAsState(
                 state = _state,
-                signInUsecase = signInUsecase
+                signUpUsecase = signUpUsecase
             )
-            _state.update { modifiedState.copy(signInLoading = false) }
+            _state.update { modifiedState.copy(signUpLoading = false) }
         }
     }
 
     companion object {
-        private fun mapStateToUiState(state: SignInState): SignInUiState {
-            return if (state.signInSuccess) {
-                SignInUiState.Success
-            } else if (state.signUp) {
-                SignInUiState.SignUp
+        private fun mapStateToUiState(state: SignUpState): SignUpUiState {
+            return if (state.signUpSuccess) {
+                SignUpUiState.Success
+            } else if (state.signIn) {
+                SignUpUiState.SignIn
             } else {
-                SignInUiState.SignIn(
+                SignUpUiState.SignUp(
                     email = state.email,
                     password = state.password,
-                    loading = state.signInLoading,
+                    loading = state.signUpLoading,
                     message = state.message
                 )
             }
         }
 
-        private suspend fun signIn(
+        private suspend fun signUp(
             email: String,
             password: String,
-            signInUsecase: SignInUsecase
-        ): ResultWrapper<SignInUsecase.Result?> {
-            val params = SignInUsecase.Params(email = email, password = password)
-            return signInUsecase.invoke(params)
+            signUpUsecase: SignUpUsecase
+        ): ResultWrapper<SignUpUsecase.Result?> {
+            val params = SignUpUsecase.Params(email = email, password = password)
+            return signUpUsecase.invoke(params)
         }
 
-        private suspend fun signInAsState(
-            state: StateFlow<SignInState>,
-            signInUsecase: SignInUsecase
-        ): SignInState {
-            val result = signIn(
+        private suspend fun signUpAsState(
+            state: StateFlow<SignUpState>,
+            signUpUsecase: SignUpUsecase
+        ): SignUpState {
+            val result = signUp(
                 email = state.value.email,
                 password = state.value.password,
-                signInUsecase = signInUsecase
+                signUpUsecase = signUpUsecase
             )
             return state.value.copy(
                 message = MessageWrapper.create(result.message),
-                signInSuccess = result.isSuccess()
+                signUpSuccess = result.isSuccess()
             )
         }
     }

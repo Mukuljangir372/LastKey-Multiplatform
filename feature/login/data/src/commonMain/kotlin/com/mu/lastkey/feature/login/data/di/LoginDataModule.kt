@@ -29,7 +29,7 @@ fun getLoginDataModule(): Module {
         single { provideLoginNetworkDataSource(get(), get(), get<AppCoroutineDispatchers>().io) }
         single { provideLoginRepository(get(), get(), get(), get<AppCoroutineDispatchers>().default) }
         single { provideSignInUsecase(get(), get<AppCoroutineDispatchers>().default, get(), get()) }
-        single { provideSignUpUsecase(get(), get<AppCoroutineDispatchers>().default) }
+        single { provideSignUpUsecase(get(), get<AppCoroutineDispatchers>().default, get(), get()) }
     }
 }
 
@@ -83,10 +83,14 @@ private fun provideSignInUsecase(
 
 private fun provideSignUpUsecase(
     loginRepository: LoginRepository,
-    coroutineDispatcher: CoroutineDispatcher
+    coroutineDispatcher: CoroutineDispatcher,
+    strings: AppStrings,
+    inputValidator: InputValidator
 ): SignUpUsecase {
     return SignUpUsecaseImpl(
         repository = loginRepository,
-        coroutineDispatcher = coroutineDispatcher
+        coroutineDispatcher = coroutineDispatcher,
+        strings = strings,
+        inputValidator = inputValidator
     )
 }

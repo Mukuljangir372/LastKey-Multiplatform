@@ -1,6 +1,5 @@
-package com.mu.lastkey.feature.login.ui.signin
+package com.mu.lastkey.feature.login.ui.signup
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,55 +31,53 @@ import com.mu.lastkey.core.ui.components.Loaders
 import com.mu.lastkey.core.ui.components.TextFields
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class SignInScreen : Screen, KoinComponent {
-    private val viewModel: SignInViewModel by inject()
+class SignUpScreen : Screen, KoinComponent {
+    private val viewModel: SignUpViewModel by inject()
     private val appNavigation: AppNavigation by inject()
 
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-        SignInUiScreen(
+        SignUpUiScreen(
             viewModel = viewModel,
-            navigateToSignUp = {
-                appNavigation.signUp(navigator)
+            navigateToSignIn =  {
+                appNavigation.signIn(navigator)
             }
         )
     }
 }
 
 @Composable
-private fun SignInUiScreen(
-    viewModel: SignInViewModel,
-    navigateToSignUp: () -> Unit
+private fun SignUpUiScreen(
+    viewModel: SignUpViewModel,
+    navigateToSignIn: () -> Unit
 ) {
-    val state: SignInUiState by viewModel.uiState.collectAsState(SignInUiState.Idle)
+    val state: SignUpUiState by viewModel.uiState.collectAsState(SignUpUiState.Idle)
 
     LaunchedEffect(Unit) {
         viewModel.start()
     }
 
     when (state) {
-        is SignInUiState.SignIn -> {
+        is SignUpUiState.SignUp -> {
             val snackbarHostState = remember { SnackbarHostState() }
 
-            LaunchedEffect((state as SignInUiState.SignIn).message.id) {
-                val message = (state as SignInUiState.SignIn).message.message
+            LaunchedEffect((state as SignUpUiState.SignUp).message.id) {
+                val message = (state as SignUpUiState.SignUp).message.message
                 if (message.isNotBlank()) {
                     snackbarHostState.showSnackbar(message)
-                    viewModel.onMessageShown((state as SignInUiState.SignIn).message.id)
+                    viewModel.onMessageShown((state as SignUpUiState.SignUp).message.id)
                 }
             }
 
-            SignInUiScreenContent(
+            SignUpUiScreenContent(
                 snackbarHostState = snackbarHostState,
-                email = (state as SignInUiState.SignIn).email,
-                password = (state as SignInUiState.SignIn).password,
-                signInLoading = (state as SignInUiState.SignIn).loading,
+                email = (state as SignUpUiState.SignUp).email,
+                password = (state as SignUpUiState.SignUp).password,
+                signUpLoading = (state as SignUpUiState.SignUp).loading,
                 onEmailChange = viewModel::onEmailChange,
                 onPasswordChange = viewModel::onPasswordChange,
                 signIn = viewModel::signIn,
@@ -88,12 +85,12 @@ private fun SignInUiScreen(
             )
         }
 
-        is SignInUiState.SignUp -> {
-            viewModel.onSignUp()
-            navigateToSignUp()
+        is SignUpUiState.SignIn -> {
+            viewModel.onSignIn()
+            navigateToSignIn()
         }
 
-        is SignInUiState.Success -> {
+        is SignUpUiState.Success -> {
             // TODO: Navigate to Dashboard Screen
         }
 
@@ -103,11 +100,11 @@ private fun SignInUiScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun SignInUiScreenContent(
+internal fun SignUpUiScreenContent(
     snackbarHostState: SnackbarHostState,
     email: String,
     password: String,
-    signInLoading: Boolean,
+    signUpLoading: Boolean,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     signIn: () -> Unit,
@@ -120,12 +117,11 @@ internal fun SignInUiScreenContent(
         Column(
             modifier = Modifier.fillMaxSize().padding(paddingValues)
         ) {
-            Logo()
             Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
-            SignIn(
+            SignUp(
                 email = email,
                 password = password,
-                signInLoading = signInLoading,
+                signUpLoading = signUpLoading,
                 onEmailChange = onEmailChange,
                 onPasswordChange = onPasswordChange,
                 signIn = signIn,
@@ -135,42 +131,11 @@ internal fun SignInUiScreenContent(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
-private fun Logo() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = LastKeyTheme.spacing.three.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            modifier = Modifier.height(250.dp),
-            painter = painterResource(LastKeyTheme.icons.SecureWorld),
-            contentDescription = null
-        )
-
-        Spacer(modifier = Modifier.height(LastKeyTheme.dimens.one.dp))
-
-        Text(
-            text = LastKeyTheme.strings.welcomeToAppLabel,
-            style = LastKeyTheme.typo.headlineSmall
-        )
-
-        Spacer(modifier = Modifier.height(LastKeyTheme.dimens.one.dp))
-
-        Text(
-            text = LastKeyTheme.strings.appDescription,
-            style = LastKeyTheme.typo.bodyMedium
-        )
-    }
-}
-
-@Composable
-private fun SignIn(
+private fun SignUp(
     email: String,
     password: String,
-    signInLoading: Boolean,
+    signUpLoading: Boolean,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     signIn: () -> Unit,
@@ -212,26 +177,14 @@ private fun SignIn(
             }
         )
 
-        Spacer(modifier = Modifier.height(LastKeyTheme.dimens.one.dp))
-
-        // NOTE: Forgot Password not yet implemented
-        /*
-        Text(
-            modifier = Modifier.align(Alignment.End),
-            text = LastKeyTheme.strings.forgotPassword,
-            style = LastKeyTheme.typo.bodySmall,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.End
-        )*/
-
         Spacer(modifier = Modifier.height(LastKeyTheme.dimens.three.dp))
 
         Buttons.Primary(
             modifier = Modifier.fillMaxWidth(),
-            onClick = signIn,
+            onClick = signUp,
             content = {
-                if (!signInLoading) {
-                    Text(LastKeyTheme.strings.login)
+                if (!signUpLoading) {
+                    Text(LastKeyTheme.strings.createNewAccount)
                 } else {
                     Loaders.Primary(modifier = Modifier)
                 }
@@ -246,9 +199,9 @@ private fun SignIn(
 
         Buttons.PrimaryOutlined(
             modifier = Modifier.fillMaxWidth(),
-            onClick = signUp,
+            onClick = signIn,
             content = {
-                Text(LastKeyTheme.strings.createNewAccount)
+                Text(LastKeyTheme.strings.login)
             }
         )
     }

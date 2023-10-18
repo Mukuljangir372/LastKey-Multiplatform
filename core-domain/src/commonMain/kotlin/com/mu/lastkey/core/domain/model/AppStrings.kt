@@ -11,8 +11,9 @@ data class AppStrings(
     val email: String,
     val password: String,
     val signedInSuccess: String,
+    val signedUpSuccess: String,
     val enterValidEmail: String,
-    val enterValidPassword: String
+    val enterValidPassword: String,
 ) {
     companion object {
         val en = AppStrings(
@@ -26,6 +27,7 @@ data class AppStrings(
             email = "Email",
             password = "Password",
             signedInSuccess = "Signed in successfully!",
+            signedUpSuccess = "New account created successfully!",
             enterValidEmail = "Please enter a valid email",
             enterValidPassword = "Please enter a valid password. Min length is 6 chars."
         )
