@@ -48,6 +48,9 @@ class SignInScreen : Screen, KoinComponent {
             viewModel = viewModel,
             navigateToSignUp = {
                 appNavigation.signUp(navigator)
+            },
+            navigateToDashboard = {
+                appNavigation.dashboard(navigator)
             }
         )
     }
@@ -57,7 +60,8 @@ class SignInScreen : Screen, KoinComponent {
 @Composable
 private fun SignInUiScreen(
     viewModel: SignInViewModel,
-    navigateToSignUp: () -> Unit
+    navigateToSignUp: () -> Unit,
+    navigateToDashboard: () -> Unit
 ) {
     val state: SignInUiState by viewModel.uiState.collectAsState(SignInUiState.Idle)
     val snackbarHostState = remember { SnackbarHostState() }
@@ -82,9 +86,7 @@ private fun SignInUiScreen(
             is SignInUiState.SignIn -> {
                 SignInUiScreenContent(
                     modifier = Modifier.padding(paddingValues),
-                    email = (state as SignInUiState.SignIn).email,
-                    password = (state as SignInUiState.SignIn).password,
-                    signInLoading = (state as SignInUiState.SignIn).loading,
+                    state = state as SignInUiState.SignIn,
                     onEmailChange = viewModel::onEmailChange,
                     onPasswordChange = viewModel::onPasswordChange,
                     signIn = viewModel::signIn,
@@ -98,7 +100,7 @@ private fun SignInUiScreen(
             }
 
             is SignInUiState.Success -> {
-                // TODO: Navigate to Dashboard Screen
+                navigateToDashboard()
             }
 
             else -> {}
@@ -109,9 +111,7 @@ private fun SignInUiScreen(
 @Composable
 internal fun SignInUiScreenContent(
     modifier: Modifier,
-    email: String,
-    password: String,
-    signInLoading: Boolean,
+    state: SignInUiState.SignIn,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     signIn: () -> Unit,
@@ -123,9 +123,9 @@ internal fun SignInUiScreenContent(
         Logo()
         Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
         SignIn(
-            email = email,
-            password = password,
-            signInLoading = signInLoading,
+            email = state.email,
+            password = state.password,
+            signInLoading = state.loading,
             onEmailChange = onEmailChange,
             onPasswordChange = onPasswordChange,
             signIn = signIn,

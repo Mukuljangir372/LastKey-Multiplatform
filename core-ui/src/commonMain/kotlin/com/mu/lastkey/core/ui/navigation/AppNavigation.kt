@@ -8,4 +8,5 @@ interface AppNavigation {
     fun pop(navigator: Navigator): AppNavigation
     fun signIn(navigator: Navigator): AppNavigation
     fun signUp(navigator: Navigator): AppNavigation
+    fun dashboard(navigator: Navigator): AppNavigation
 }

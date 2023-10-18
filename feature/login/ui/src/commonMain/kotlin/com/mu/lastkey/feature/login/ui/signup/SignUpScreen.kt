@@ -103,9 +103,7 @@ private fun SignUpUiScreen(
             is SignUpUiState.SignUp -> {
                 SignUpUiScreenContent(
                     modifier = Modifier.padding(paddingValues),
-                    email = (state as SignUpUiState.SignUp).email,
-                    password = (state as SignUpUiState.SignUp).password,
-                    signUpLoading = (state as SignUpUiState.SignUp).loading,
+                    state = state as SignUpUiState.SignUp,
                     onEmailChange = viewModel::onEmailChange,
                     onPasswordChange = viewModel::onPasswordChange,
                     signIn = viewModel::signIn,
@@ -130,9 +128,7 @@ private fun SignUpUiScreen(
 @Composable
 internal fun SignUpUiScreenContent(
     modifier: Modifier,
-    email: String,
-    password: String,
-    signUpLoading: Boolean,
+    state: SignUpUiState.SignUp,
     onEmailChange: (String) -> Unit,
     onPasswordChange: (String) -> Unit,
     signIn: () -> Unit,
@@ -143,9 +139,9 @@ internal fun SignUpUiScreenContent(
     ) {
         Spacer(modifier = Modifier.size(LastKeyTheme.spacing.three.dp))
         SignUp(
-            email = email,
-            password = password,
-            signUpLoading = signUpLoading,
+            email = state.email,
+            password = state.password,
+            signUpLoading = state.loading,
             onEmailChange = onEmailChange,
             onPasswordChange = onPasswordChange,
             signIn = signIn,
