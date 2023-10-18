@@ -7,6 +7,6 @@ class DashboardState {
 }
 
 sealed interface DashboardUiState {
-    object Idle: DashboardUiState
+    object Idle : DashboardUiState
     object Dashboard : DashboardUiState
 }

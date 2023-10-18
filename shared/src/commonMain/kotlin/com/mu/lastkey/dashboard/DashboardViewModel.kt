@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
 class DashboardViewModel(
-    private val dispatchers: AppCoroutineDispatchers,
+    private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
     private var scope: CoroutineScope? = null
 
