@@ -16,7 +16,7 @@ object Toolbars {
         modifier: Modifier,
         title: @Composable () -> Unit,
         navigationIcon: @Composable () -> Unit = {},
-        actions: @Composable RowScope.() -> Unit = {},
+        actions: @Composable RowScope.() -> Unit = {}
     ) {
         Surface(shadowElevation = 1.dp) {
             TopAppBar(

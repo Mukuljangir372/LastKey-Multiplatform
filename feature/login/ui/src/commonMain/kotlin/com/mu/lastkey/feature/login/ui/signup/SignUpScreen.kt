@@ -36,8 +36,6 @@ import com.mu.lastkey.core.ui.components.TextFields
 import com.mu.lastkey.core.ui.components.Toolbars
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -57,7 +55,7 @@ class SignUpScreen : Screen, KoinComponent {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SignUpUiScreen(
     viewModel: SignUpViewModel,
