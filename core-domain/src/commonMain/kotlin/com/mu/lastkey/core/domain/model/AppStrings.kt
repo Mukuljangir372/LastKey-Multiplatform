@@ -13,7 +13,12 @@ data class AppStrings(
     val signedInSuccess: String,
     val signedUpSuccess: String,
     val enterValidEmail: String,
-    val enterValidPassword: String
+    val enterValidPassword: String,
+    val passwords: String,
+    val home: String,
+    val chats: String,
+    val search: String,
+    val more: String
 ) {
     companion object {
         val en = AppStrings(
@@ -29,7 +34,12 @@ data class AppStrings(
             signedInSuccess = "Signed in successfully!",
             signedUpSuccess = "New account created successfully!",
             enterValidEmail = "Please enter a valid email",
-            enterValidPassword = "Please enter a valid password. Min length is 6 chars."
+            enterValidPassword = "Please enter a valid password. Min length is 6 chars.",
+            passwords = "Passwords",
+            home = "Home",
+            chats = "Chats",
+            search = "Search",
+            more = "More"
         )
     }
 }
