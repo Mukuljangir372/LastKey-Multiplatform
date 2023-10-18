@@ -1,4 +1,4 @@
-package com.mu.lastkey.feature.login.ui
+package com.mu.lastkey.feature.login.ui.signin
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers

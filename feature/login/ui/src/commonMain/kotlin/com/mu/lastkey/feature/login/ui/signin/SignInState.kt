@@ -1,4 +1,4 @@
-package com.mu.lastkey.feature.login.ui
+package com.mu.lastkey.feature.login.ui.signin
 
 import com.mu.lastkey.core.ui.model.MessageWrapper
 

@@ -1,4 +1,4 @@
-package com.mu.lastkey.feature.login.ui
+package com.mu.lastkey.feature.login.ui.signin
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
