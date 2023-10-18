@@ -1,6 +1,6 @@
 package com.mu.lastkey.feature.login.domain.repository
 
-import com.mu.lastkey.core.domain.model.wrapper.ResultWrapper
+import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.feature.login.domain.model.SignInRequest
 import com.mu.lastkey.feature.login.domain.model.SignInResponse
 import com.mu.lastkey.feature.login.domain.model.SignUpRequest

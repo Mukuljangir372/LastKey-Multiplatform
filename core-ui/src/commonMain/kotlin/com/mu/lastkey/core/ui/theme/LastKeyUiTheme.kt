@@ -9,8 +9,8 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
+import com.mu.lastkey.core.domain.model.AppStrings
 import com.mu.lastkey.core.ui.calculateLocalWindow
-import com.mu.lastkey.core.ui.resource.AppStrings
 
 // Guidelines - https://m3.material.io/styles/color/the-color-system/color-roles
 // Figma - https://www.figma.com/community/file/1248805263844976008/Build-a-Material-color-scheme

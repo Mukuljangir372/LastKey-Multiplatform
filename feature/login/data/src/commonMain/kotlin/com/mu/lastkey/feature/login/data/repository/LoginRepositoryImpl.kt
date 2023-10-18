@@ -5,7 +5,7 @@ import com.mu.lastkey.core.data.local.model.AuthSessionLocalModel
 import com.mu.lastkey.core.data.local.model.AuthUserLocalModel
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 import com.mu.lastkey.core.domain.model.user.User
-import com.mu.lastkey.core.domain.model.wrapper.ResultWrapper
+import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.feature.login.data.network.LoginNetworkDataSource
 import com.mu.lastkey.feature.login.data.network.api.LoginApi
 import com.mu.lastkey.feature.login.domain.model.SignInRequest
@@ -64,7 +64,10 @@ class LoginRepositoryImpl(
                 val successData = SignInResponse(user = user)
                 ResultWrapper.Success(successData)
             } catch (e: Exception) {
-                ResultWrapper.Failure(message = e.message.orEmpty())
+                ResultWrapper.Failure(
+                    message = e.message.orEmpty(),
+                    throwable = e
+                )
             }
         }
 

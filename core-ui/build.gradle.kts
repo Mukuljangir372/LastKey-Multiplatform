@@ -17,6 +17,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-utils"))
+                implementation(project(":core-domain"))
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)

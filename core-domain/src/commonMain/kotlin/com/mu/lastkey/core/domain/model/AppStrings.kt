@@ -1,8 +1,5 @@
-package com.mu.lastkey.core.ui.resource
+package com.mu.lastkey.core.domain.model
 
-import androidx.compose.runtime.Stable
-
-@Stable
 data class AppStrings(
     val appName: String,
     val welcomeToAppLabel: String,
@@ -12,7 +9,10 @@ data class AppStrings(
     val or: String,
     val forgotPassword: String,
     val email: String,
-    val password: String
+    val password: String,
+    val signedInSuccess: String,
+    val enterValidEmail: String,
+    val enterValidPassword: String
 ) {
     companion object {
         val en = AppStrings(
@@ -24,7 +24,10 @@ data class AppStrings(
             or = "OR",
             forgotPassword = "Forgot Password?",
             email = "Email",
-            password = "Password"
+            password = "Password",
+            signedInSuccess = "Signed in successfully!",
+            enterValidEmail = "Please enter a valid email",
+            enterValidPassword = "Please enter a valid password. Min length is 6 chars."
         )
     }
 }

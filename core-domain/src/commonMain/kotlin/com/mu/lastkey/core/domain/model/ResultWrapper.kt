@@ -1,4 +1,4 @@
-package com.mu.lastkey.core.domain.model.wrapper
+package com.mu.lastkey.core.domain.model
 
 sealed class ResultWrapper<T>(
     val data: T?,

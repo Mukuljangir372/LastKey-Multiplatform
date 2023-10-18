@@ -1,6 +1,6 @@
 package com.mu.lastkey.feature.login.data.usecase
 
-import com.mu.lastkey.core.domain.model.wrapper.ResultWrapper
+import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.feature.login.domain.model.SignUpRequest
 import com.mu.lastkey.feature.login.domain.repository.LoginRepository
 import com.mu.lastkey.feature.login.domain.usecase.SignUpUsecase

@@ -14,6 +14,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -23,8 +25,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import com.mu.lastkey.core.ui.components.Buttons
@@ -55,7 +55,18 @@ private fun SignInUiScreen(viewModel: SignInViewModel) {
 
     when (state) {
         is SignInUiState.SignIn -> {
+            val snackbarHostState = remember { SnackbarHostState() }
+
+            LaunchedEffect((state as SignInUiState.SignIn).message.id) {
+                val message = (state as SignInUiState.SignIn).message.message
+                if (message.isNotBlank()) {
+                    snackbarHostState.showSnackbar(message)
+                    viewModel.onMessageShown((state as SignInUiState.SignIn).message.id)
+                }
+            }
+
             SignInUiScreenContent(
+                snackbarHostState = snackbarHostState,
                 email = (state as SignInUiState.SignIn).email,
                 password = (state as SignInUiState.SignIn).password,
                 signInLoading = (state as SignInUiState.SignIn).loading,
@@ -81,6 +92,7 @@ private fun SignInUiScreen(viewModel: SignInViewModel) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SignInUiScreenContent(
+    snackbarHostState: SnackbarHostState,
     email: String,
     password: String,
     signInLoading: Boolean,
@@ -89,7 +101,10 @@ internal fun SignInUiScreenContent(
     signIn: () -> Unit,
     signUp: () -> Unit
 ) {
-    Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
+    Scaffold(
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = { SnackbarHost(snackbarHostState) }
+    ) { paddingValues ->
         LazyColumn(
             modifier = Modifier.fillMaxSize().padding(paddingValues),
             verticalArrangement = Arrangement.Center

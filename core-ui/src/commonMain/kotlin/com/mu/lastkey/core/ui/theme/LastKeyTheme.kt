@@ -6,7 +6,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import com.mu.lastkey.core.ui.resource.AppStrings
+import com.mu.lastkey.core.domain.model.AppStrings
 
 object LastKeyTheme {
     val colors: LastKeyColors

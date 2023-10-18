@@ -1,6 +1,6 @@
 package com.mu.lastkey.feature.login.ui.di
 
-import com.mu.lastkey.core.domain.model.coroutine.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import com.mu.lastkey.feature.login.domain.usecase.SignInUsecase
 import com.mu.lastkey.feature.login.ui.SignInViewModel
 import org.koin.core.module.Module
