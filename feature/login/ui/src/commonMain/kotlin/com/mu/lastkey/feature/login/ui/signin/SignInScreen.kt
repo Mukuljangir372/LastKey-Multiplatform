@@ -77,10 +77,11 @@ private fun SignInUiScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { _ ->
+    ) { paddingValues ->
         when (state) {
             is SignInUiState.SignIn -> {
                 SignInUiScreenContent(
+                    modifier = Modifier.padding(paddingValues),
                     email = (state as SignInUiState.SignIn).email,
                     password = (state as SignInUiState.SignIn).password,
                     signInLoading = (state as SignInUiState.SignIn).loading,
@@ -107,6 +108,7 @@ private fun SignInUiScreen(
 
 @Composable
 internal fun SignInUiScreenContent(
+    modifier: Modifier,
     email: String,
     password: String,
     signInLoading: Boolean,
@@ -116,7 +118,7 @@ internal fun SignInUiScreenContent(
     signUp: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Logo()
         Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))

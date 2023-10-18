@@ -74,10 +74,11 @@ private fun SignUpUiScreen(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) }
-    ) { _ ->
+    ) { paddingValues ->
         when (state) {
             is SignUpUiState.SignUp -> {
                 SignUpUiScreenContent(
+                    modifier = Modifier.padding(paddingValues),
                     email = (state as SignUpUiState.SignUp).email,
                     password = (state as SignUpUiState.SignUp).password,
                     signUpLoading = (state as SignUpUiState.SignUp).loading,
@@ -104,6 +105,7 @@ private fun SignUpUiScreen(
 
 @Composable
 internal fun SignUpUiScreenContent(
+    modifier: Modifier,
     email: String,
     password: String,
     signUpLoading: Boolean,
@@ -113,7 +115,7 @@ internal fun SignUpUiScreenContent(
     signUp: () -> Unit
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
         SignUp(
