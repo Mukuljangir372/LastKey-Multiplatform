@@ -2,7 +2,9 @@ package com.mu.lastkey.feature.login.data.di
 
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSource
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
-import com.mu.lastkey.core.domain.model.coroutine.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.InputValidator
+import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.model.AppStrings
 import com.mu.lastkey.core.network.realm.RealmClient
 import com.mu.lastkey.feature.login.data.network.LoginNetworkDataSource
 import com.mu.lastkey.feature.login.data.network.LoginNetworkDataSourceImpl
@@ -26,7 +28,7 @@ fun getLoginDataModule(): Module {
         single { provideUserApi(get()) }
         single { provideLoginNetworkDataSource(get(), get(), get<AppCoroutineDispatchers>().io) }
         single { provideLoginRepository(get(), get(), get(), get<AppCoroutineDispatchers>().default) }
-        single { provideSignInUsecase(get(), get<AppCoroutineDispatchers>().default) }
+        single { provideSignInUsecase(get(), get<AppCoroutineDispatchers>().default, get(), get()) }
         single { provideSignUpUsecase(get(), get<AppCoroutineDispatchers>().default) }
     }
 }
@@ -67,11 +69,15 @@ private fun provideLoginRepository(
 
 private fun provideSignInUsecase(
     loginRepository: LoginRepository,
-    coroutineDispatcher: CoroutineDispatcher
+    coroutineDispatcher: CoroutineDispatcher,
+    strings: AppStrings,
+    inputValidator: InputValidator
 ): SignInUsecase {
     return SignInUsecaseImpl(
         repository = loginRepository,
-        coroutineDispatcher = coroutineDispatcher
+        coroutineDispatcher = coroutineDispatcher,
+        strings = strings,
+        inputValidator = inputValidator
     )
 }
 

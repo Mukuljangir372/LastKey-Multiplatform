@@ -6,7 +6,9 @@ import com.mu.lastkey.core.data.local.AuthUserLocalDataSource
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSourceImpl
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 import com.mu.lastkey.core.data.mapper.AuthUserMapperImpl
-import com.mu.lastkey.core.domain.model.coroutine.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.InputValidator
+import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.model.AppStrings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.module.Module
@@ -19,11 +21,17 @@ expect fun getCoreDataPlatformModule(): Module
 
 fun getCoreDataModule(): Module {
     return module {
+        single { provideAppStrings() }
+        single { provideInputValidator() }
         single { provideAppCoroutineDispatchers() }
         single { provideAppDatabase(get(named(APP_DATABASE_DRIVER))) }
         single { provideAuthUserMapper() }
         single { provideAuthUserLocalDataSource(get(), get()) }
     }
+}
+
+private fun provideAppStrings(): AppStrings {
+    return AppStrings.en
 }
 
 private fun provideAppCoroutineDispatchers(): AppCoroutineDispatchers {
@@ -40,6 +48,10 @@ private fun provideAppDatabase(driver: SqlDriver): AppDatabase {
 
 private fun provideAuthUserMapper(): AuthUserMapper {
     return AuthUserMapperImpl()
+}
+
+private fun provideInputValidator(): InputValidator {
+    return InputValidatorImpl()
 }
 
 private fun provideAuthUserLocalDataSource(
