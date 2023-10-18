@@ -67,9 +67,13 @@ class SignInUsecaseImpl(
         ): ResultWrapper<SignInUsecase.Result?>? {
             val validEmail = inputValidator.isValidEmail(params.email)
             val validPassword = inputValidator.isValidPassword(params.password)
-            val message = if (!validEmail) strings.enterValidEmail
-            else if (!validPassword) strings.enterValidPassword
-            else ""
+            val message = if (!validEmail) {
+                strings.enterValidEmail
+            } else if (!validPassword) {
+                strings.enterValidPassword
+            } else {
+                ""
+            }
             return if (message.isNotBlank()) ResultWrapper.Failure(message = message) else null
         }
     }

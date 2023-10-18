@@ -16,5 +16,5 @@ class LastKeyDimens(
     val seven: Int = 56,
     val eight: Int = 64,
     val nine: Int = 72,
-    val ten: Int = 80,
+    val ten: Int = 80
 )
