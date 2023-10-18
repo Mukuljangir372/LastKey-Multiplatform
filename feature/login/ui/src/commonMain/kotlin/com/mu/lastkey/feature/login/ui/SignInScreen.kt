@@ -1,7 +1,6 @@
 package com.mu.lastkey.feature.login.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -105,29 +103,20 @@ internal fun SignInUiScreenContent(
         modifier = Modifier.fillMaxSize(),
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
-            verticalArrangement = Arrangement.Center
+        Column(
+            modifier = Modifier.fillMaxSize().padding(paddingValues)
         ) {
-            item {
-                Logo()
-            }
-
-            item {
-                Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
-            }
-
-            item {
-                SignIn(
-                    email = email,
-                    password = password,
-                    signInLoading = signInLoading,
-                    onEmailChange = onEmailChange,
-                    onPasswordChange = onPasswordChange,
-                    signIn = signIn,
-                    signUp = signUp
-                )
-            }
+            Logo()
+            Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
+            SignIn(
+                email = email,
+                password = password,
+                signInLoading = signInLoading,
+                onEmailChange = onEmailChange,
+                onPasswordChange = onPasswordChange,
+                signIn = signIn,
+                signUp = signUp
+            )
         }
     }
 }
@@ -142,8 +131,8 @@ private fun Logo() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
-            modifier = Modifier.size(LastKeyTheme.dimens.eight.dp),
-            painter = painterResource(LastKeyTheme.icons.AppIcon),
+            modifier = Modifier.height(250.dp),
+            painter = painterResource(LastKeyTheme.icons.SecureWorld),
             contentDescription = null
         )
 
