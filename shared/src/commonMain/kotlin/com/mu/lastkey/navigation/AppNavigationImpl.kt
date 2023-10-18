@@ -6,7 +6,7 @@ import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.feature.login.ui.signin.SignInScreen
 import com.mu.lastkey.feature.login.ui.signup.SignUpScreen
 
-class AppNavigationImpl: AppNavigation {
+class AppNavigationImpl : AppNavigation {
     override fun initialScreen(): Screen {
         return SignInScreen()
     }
