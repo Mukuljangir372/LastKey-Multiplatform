@@ -8,8 +8,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -22,6 +25,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.LocalNavigator
@@ -29,8 +33,11 @@ import cafe.adriel.voyager.navigator.currentOrThrow
 import com.mu.lastkey.core.ui.components.Buttons
 import com.mu.lastkey.core.ui.components.Loaders
 import com.mu.lastkey.core.ui.components.TextFields
+import com.mu.lastkey.core.ui.components.Toolbars
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -50,7 +57,7 @@ class SignUpScreen : Screen, KoinComponent {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 private fun SignUpUiScreen(
     viewModel: SignUpViewModel,
@@ -73,7 +80,26 @@ private fun SignUpUiScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        snackbarHost = { SnackbarHost(snackbarHostState) }
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+        topBar = {
+            Toolbars.Primary(
+                modifier = Modifier.fillMaxWidth(),
+                navigationIcon = {
+                    IconButton(onClick = navigateToSignIn) {
+                        Icon(
+                            painter = rememberVectorPainter(LastKeyTheme.materialIcons.Default.ArrowBack),
+                            contentDescription = null
+                        )
+                    }
+                },
+                title = {
+                    Text(
+                        text = LastKeyTheme.strings.createNewAccount,
+                        style = LastKeyTheme.typo.titleMedium
+                    )
+                }
+            )
+        }
     ) { paddingValues ->
         when (state) {
             is SignUpUiState.SignUp -> {
@@ -117,7 +143,7 @@ internal fun SignUpUiScreenContent(
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
+        Spacer(modifier = Modifier.size(LastKeyTheme.spacing.three.dp))
         SignUp(
             email = email,
             password = password,
