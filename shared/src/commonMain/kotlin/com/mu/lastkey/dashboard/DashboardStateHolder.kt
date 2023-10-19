@@ -2,15 +2,14 @@ package com.mu.lastkey.dashboard
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.collectAsState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
+// NOTE: collectAsState or get() mark as @Composable crash on ios
 @Stable
 class DashboardStateHolder {
     private val _selectedScreen = MutableStateFlow<DashboardNavScreen>(DashboardNavScreen.Home)
-    val selectedScreen: State<DashboardNavScreen>
-        @Composable get() = _selectedScreen.collectAsState()
+    val selectedScreen: StateFlow<DashboardNavScreen> get() = _selectedScreen
 
     fun selectScreen(screen: DashboardNavScreen) {
         _selectedScreen.value = screen
