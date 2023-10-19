@@ -30,7 +30,7 @@ class DashboardViewModel(
         private fun mapDashboardStateToUiState(
             state: DashboardState
         ): DashboardUiState {
-            return DashboardUiState.Dashboard
+            return DashboardUiState.Idle
         }
     }
 }
