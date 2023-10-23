@@ -15,6 +15,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.navigator.tab.CurrentTab
+import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabNavigator
+import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.mu.lastkey.feature.home.ui.HomeScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -34,44 +40,100 @@ private fun DashboardUiScreen(viewModel: DashboardViewModel) {
     val selectedScreen by stateHolder.selectedScreen.collectAsState()
     val navItems = stateHolder.getBottomNavItems()
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        bottomBar = {
-            NavigationBar(modifier = Modifier.fillMaxWidth()) {
-                navItems.forEach { item ->
-                    val selected = selectedScreen == item.screen
-                    NavigationBarItem(
-                        selected = selected,
-                        icon = {
-                            Icon(
-                                painter = rememberVectorPainter(item.icon),
-                                contentDescription = null
-                            )
-                        },
-                        onClick = {
-                            stateHolder.selectScreen(item.screen)
-                        }
-                    )
-                }
-            }
-        }
-    ) { _ ->
+    TabNavigator(HomeTab) {
+        val tabNavigator = LocalTabNavigator.current
         when (selectedScreen) {
-            is DashboardNavScreen.Home -> {
-                Text("Home")
+            DashboardNavScreen.Home -> {
+                tabNavigator.current = HomeTab
             }
-            is DashboardNavScreen.Passwords -> {
-                Text("Passwords")
+            DashboardNavScreen.Passwords -> {
+                tabNavigator.current = PasswordsTab
             }
-            is DashboardNavScreen.Chats -> {
-                Text("Chats")
+            DashboardNavScreen.Chats -> {
+                tabNavigator.current = ChatsTab
             }
-            is DashboardNavScreen.Search -> {
-                Text("Search")
+            DashboardNavScreen.Search -> {
+                tabNavigator.current = SearchTab
             }
-            is DashboardNavScreen.More -> {
-                Text("More")
+            DashboardNavScreen.More -> {
+                tabNavigator.current = MoreTab
             }
         }
+
+        Scaffold(
+            modifier = Modifier.fillMaxSize(),
+            bottomBar = {
+                NavigationBar(modifier = Modifier.fillMaxWidth()) {
+                    navItems.forEach { item ->
+                        val selected = selectedScreen == item.screen
+                        NavigationBarItem(
+                            selected = selected,
+                            icon = {
+                                Icon(
+                                    painter = rememberVectorPainter(item.icon),
+                                    contentDescription = null
+                                )
+                            },
+                            onClick = {
+                                stateHolder.selectScreen(item.screen)
+                            }
+                        )
+                    }
+                }
+            },
+            content = { _ ->
+                CurrentTab()
+            }
+        )
+    }
+}
+
+private object HomeTab : Tab {
+    override val options: TabOptions
+        @Composable get() = remember { TabOptions(index = 0u, title = "") }
+
+    @Composable
+    override fun Content() {
+        HomeScreen().Content()
+    }
+}
+
+private object PasswordsTab : Tab {
+    override val options: TabOptions
+        @Composable get() = remember { TabOptions(index = 0u, title = "") }
+
+    @Composable
+    override fun Content() {
+        Text("Passwords")
+    }
+}
+
+private object ChatsTab : Tab {
+    override val options: TabOptions
+        @Composable get() = remember { TabOptions(index = 0u, title = "") }
+
+    @Composable
+    override fun Content() {
+        Text("Chats")
+    }
+}
+
+private object SearchTab : Tab {
+    override val options: TabOptions
+        @Composable get() = remember { TabOptions(index = 0u, title = "") }
+
+    @Composable
+    override fun Content() {
+        Text("Search")
+    }
+}
+
+private object MoreTab : Tab {
+    override val options: TabOptions
+        @Composable get() = remember { TabOptions(index = 0u, title = "") }
+
+    @Composable
+    override fun Content() {
+        Text("More")
     }
 }

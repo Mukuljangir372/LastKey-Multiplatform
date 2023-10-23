@@ -10,6 +10,7 @@ import com.mu.lastkey.core.preferences.getCorePreferencesPlatformModule
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.core.utils.di.getCoreUtilsModule
 import com.mu.lastkey.dashboard.DashboardViewModel
+import com.mu.lastkey.feature.home.ui.di.getHomeUiModule
 import com.mu.lastkey.feature.login.data.di.getLoginDataModule
 import com.mu.lastkey.feature.login.ui.di.getLoginUiModule
 import com.mu.lastkey.navigation.AppNavigationImpl
@@ -30,7 +31,8 @@ internal val dependencies = listOf(
     getCoreDataModule(),
     getLoginDataModule(),
     getLoginUiModule(),
-    getSharedModule()
+    getSharedModule(),
+    getHomeUiModule()
 )
 
 private fun getSharedModule(): Module {
