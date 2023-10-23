@@ -49,9 +49,14 @@ kotlin {
                 api(project(":core-network"))
                 api(project(":core-preferences"))
                 api(project(":core-utils"))
+
                 api(project(":feature:login:data"))
                 api(project(":feature:login:domain"))
                 api(project(":feature:login:ui"))
+
+                api(project(":feature:home:data"))
+                api(project(":feature:home:domain"))
+                api(project(":feature:home:ui"))
             }
         }
 
