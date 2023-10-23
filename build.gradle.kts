@@ -14,6 +14,9 @@ plugins {
     alias(libs.plugins.android.library).apply(false)
     kotlin("android").version(libs.versions.kotlin.get()).apply(false)
     kotlin("multiplatform").version(libs.versions.kotlin.get()).apply(false)
+    alias(libs.plugins.kotlin.serialization).apply(false)
+    alias(libs.plugins.compose).apply(false)
+    alias(libs.plugins.ksp).apply(false)
 }
 allprojects {
     apply { plugin("org.jlleitschuh.gradle.ktlint") }

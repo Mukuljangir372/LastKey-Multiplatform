@@ -21,11 +21,10 @@ class KMMConventionPlugin : Plugin<Project> {
             extensions.getByType(KotlinMultiplatformExtension::class.java).apply {
                 targetHierarchy.default()
 
-                android {
+                androidTarget {
                     compilations.all {
                         kotlinOptions {
                             jvmTarget = "1.8"
-                            jvmToolchain(8)
                         }
                     }
                 }
