@@ -4,20 +4,20 @@ plugins {
 }
 
 android {
-    namespace = "com.mu.lastkey.android"
-    compileSdk = 33
+    namespace = libs.versions.applicationId.get()
+    compileSdk = libs.versions.androidCompileSdk.get().toInt()
     defaultConfig {
-        applicationId = "com.mu.lastkey.android"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = libs.versions.applicationId.get()
+        minSdk = libs.versions.androidMinSdk.get().toInt()
+        targetSdk = libs.versions.androidTargetSdk.get().toInt()
+        versionCode = libs.versions.applicationVersionCode.get().toInt()
+        versionName = libs.versions.applicationVersionName.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
+        kotlinCompilerExtensionVersion = libs.versions.composeKotlinCompilerExtension.get()
     }
     packaging {
         resources {
@@ -33,8 +33,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
+    kotlin {
+        jvmToolchain(8)
     }
 }
 

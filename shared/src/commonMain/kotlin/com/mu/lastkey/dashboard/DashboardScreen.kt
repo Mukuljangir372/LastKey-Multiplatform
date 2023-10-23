@@ -2,7 +2,6 @@ package com.mu.lastkey.dashboard
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -28,7 +27,6 @@ class DashboardScreen : Screen, KoinComponent {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun DashboardUiScreen(viewModel: DashboardViewModel) {
     val state: DashboardUiState by viewModel.state.collectAsState(DashboardUiState.Idle)

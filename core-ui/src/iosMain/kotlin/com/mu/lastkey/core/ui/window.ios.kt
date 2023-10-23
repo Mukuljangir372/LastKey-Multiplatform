@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.mu.lastkey.core.ui.theme.LastKeyWindow
 import kotlinx.cinterop.COpaquePointer
+import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.ExportObjCClass
 import kotlinx.cinterop.useContents
 import platform.Foundation.NSKeyValueObservingOptionNew
@@ -23,7 +24,7 @@ import platform.Foundation.removeObserver
 import platform.UIKit.UIViewController
 import platform.darwin.NSObject
 
-@OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
+@OptIn(ExperimentalMaterial3WindowSizeClassApi::class, ExperimentalForeignApi::class)
 @Composable
 internal actual fun calculateLocalWindow(): LastKeyWindow {
     val uiViewController = LocalUIViewController.current
@@ -64,6 +65,7 @@ internal actual fun calculateLocalWindow(): LastKeyWindow {
     )
 }
 
+@OptIn(ExperimentalForeignApi::class)
 private fun UIViewController.getViewFrameSize(): Size = view.frame().useContents {
     // iOS returns density independent pixels, rather than raw pixels
     Size(size.width.toFloat(), size.height.toFloat())
@@ -73,6 +75,7 @@ private fun UIViewController.getViewFrameSize(): Size = view.frame().useContents
 private class ObserverObject(
     private val onChange: () -> Unit
 ) : NSObject(), KeyValueObserverProtocol {
+    @ExperimentalForeignApi
     override fun observeValueForKeyPath(
         keyPath: String?,
         ofObject: Any?,
