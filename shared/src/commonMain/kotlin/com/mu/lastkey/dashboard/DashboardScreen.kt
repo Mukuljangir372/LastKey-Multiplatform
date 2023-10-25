@@ -21,7 +21,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
-import com.mu.lastkey.feature.home.ui.HomeScreen
+import com.mu.lastkey.home.HomeScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
