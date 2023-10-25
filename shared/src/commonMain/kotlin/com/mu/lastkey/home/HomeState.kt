@@ -1,4 +1,4 @@
-package com.mu.lastkey.feature.home.ui
+package com.mu.lastkey.home
 
 data class HomeState(
     val loading: Boolean

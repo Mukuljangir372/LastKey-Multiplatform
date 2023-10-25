@@ -1,4 +1,4 @@
-package com.mu.lastkey.feature.home.ui
+package com.mu.lastkey.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column

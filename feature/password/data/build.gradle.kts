@@ -9,7 +9,8 @@ kotlin {
                 implementation(project(":core-domain"))
                 implementation(project(":core-network"))
                 implementation(project(":core-database"))
-                implementation(project(":feature:home:domain"))
+                implementation(project(":feature:password:domain"))
+
                 implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
                 implementation(libs.kotlin.serializaton)
@@ -19,5 +20,5 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.feature.home.data"
+    namespace = "com.mu.lastkey.feature.password.data"
 }

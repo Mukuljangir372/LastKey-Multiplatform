@@ -31,8 +31,8 @@ include(
     ":feature:login:data",
     ":feature:login:domain",
     ":feature:login:ui",
-    ":feature:home",
-    ":feature:home:data",
-    ":feature:home:domain",
-    ":feature:home:ui"
+    ":feature:password",
+    ":feature:password:data",
+    ":feature:password:domain",
+    ":feature:password:ui",
 )

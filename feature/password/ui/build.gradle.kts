@@ -10,7 +10,7 @@ kotlin {
             dependencies {
                 implementation(project(":core-ui"))
                 implementation(project(":core-domain"))
-                implementation(project(":feature:home:domain"))
+                implementation(project(":feature:password:domain"))
                 implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
             }
@@ -18,7 +18,7 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.feature.home.ui"
+    namespace = "com.mu.lastkey.feature.password.ui"
     buildFeatures {
         compose = true
     }
