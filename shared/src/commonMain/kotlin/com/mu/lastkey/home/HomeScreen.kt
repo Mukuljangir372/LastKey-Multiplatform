@@ -19,15 +19,13 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class HomeScreen : Screen, KoinComponent {
-    private val viewModel: HomeViewModel by inject()
-
     @Composable
     override fun Content() {
+        val viewModel: HomeViewModel by inject()
         HomeUiScreen(viewModel)
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun HomeUiScreen(viewModel: HomeViewModel) {
     val state by viewModel.uiState.collectAsState(HomeUiState.Idle)
