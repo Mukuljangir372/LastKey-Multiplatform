@@ -1,6 +1,5 @@
 package com.mu.lastkey.core.ui.components
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -11,20 +10,19 @@ import com.mu.lastkey.core.ui.theme.LastKeyTheme
 
 object Cards {
     @Composable
-    fun Basic(
+    fun Primary(
         modifier: Modifier,
         content: @Composable ColumnScope.() -> Unit
     ) {
         Card(
             modifier = modifier,
             content = content,
-            colors = CardDefaults.outlinedCardColors(
+            colors = CardDefaults.elevatedCardColors(
                 containerColor = LastKeyTheme.colorScheme.background,
                 contentColor = LastKeyTheme.colorScheme.onBackground
             ),
-            border = BorderStroke(
-                width = 1.dp,
-                color = LastKeyTheme.colorScheme.outline
+            elevation = CardDefaults.elevatedCardElevation(
+                defaultElevation = LastKeyTheme.dimens.quarter.dp
             )
         )
     }
