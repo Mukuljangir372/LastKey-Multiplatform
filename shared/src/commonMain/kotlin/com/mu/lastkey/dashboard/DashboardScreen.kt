@@ -50,9 +50,6 @@ private fun DashboardUiScreen(viewModel: DashboardViewModel) {
             DashboardNavScreen.Passwords -> {
                 tabNavigator.current = PasswordsTab
             }
-            DashboardNavScreen.Chats -> {
-                tabNavigator.current = ChatsTab
-            }
             DashboardNavScreen.Search -> {
                 tabNavigator.current = SearchTab
             }
@@ -110,16 +107,6 @@ private object PasswordsTab : Tab {
     @Composable
     override fun Content() {
         Text("Passwords")
-    }
-}
-
-private object ChatsTab : Tab {
-    override val options: TabOptions
-        @Composable get() = remember { TabOptions(index = 0u, title = "") }
-
-    @Composable
-    override fun Content() {
-        Text("Chats")
     }
 }
 
