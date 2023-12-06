@@ -8,6 +8,7 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.mu.lastkey.core.ui.theme.LastKeyTheme
 
 object Toolbars {
     @OptIn(ExperimentalMaterial3Api::class)
@@ -18,13 +19,18 @@ object Toolbars {
         navigationIcon: @Composable () -> Unit = {},
         actions: @Composable RowScope.() -> Unit = {}
     ) {
-        Surface(shadowElevation = 1.dp) {
+        Surface(shadowElevation = 2.dp) {
             TopAppBar(
                 modifier = modifier,
                 title = title,
                 navigationIcon = navigationIcon,
                 actions = actions,
-                colors = TopAppBarDefaults.smallTopAppBarColors()
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = LastKeyTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f),
+                    navigationIconContentColor = LastKeyTheme.colorScheme.primary,
+                    titleContentColor = LastKeyTheme.colorScheme.primary,
+                    actionIconContentColor = LastKeyTheme.colorScheme.primary
+                )
             )
         }
     }
