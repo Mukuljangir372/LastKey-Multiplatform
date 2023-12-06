@@ -53,6 +53,7 @@ kotlin {
                 api(project(":feature:login:data"))
                 api(project(":feature:login:domain"))
                 api(project(":feature:login:ui"))
+                api(project(":feature:splash:ui"))
             }
         }
 

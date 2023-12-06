@@ -6,8 +6,8 @@ import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.dashboard.DashboardScreen
 import com.mu.lastkey.feature.login.ui.signin.SignInScreen
 import com.mu.lastkey.feature.login.ui.signup.SignUpScreen
+import com.mu.lastkey.feature.splash.ui.SplashScreen
 import com.mu.lastkey.home.HomeScreen
-import com.mu.lastkey.splash.SplashScreen
 
 internal class AppNavigationImpl : AppNavigation {
     override fun initialScreen(): Screen {
