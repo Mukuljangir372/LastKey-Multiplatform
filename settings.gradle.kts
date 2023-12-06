@@ -36,5 +36,9 @@ include(
     ":feature:password:domain",
     ":feature:password:ui",
     ":feature:splash",
-    ":feature:splash:ui"
+    ":feature:splash:ui",
+    ":feature:home",
+    ":feature:home:data",
+    ":feature:home:domain",
+    ":feature:home:ui",
 )
