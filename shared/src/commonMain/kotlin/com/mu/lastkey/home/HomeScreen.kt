@@ -13,7 +13,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,6 +27,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import com.mu.lastkey.core.ui.components.Cards
@@ -58,6 +63,14 @@ private fun HomeUiScreen(viewModel: HomeViewModel) {
                         text = LastKeyTheme.strings.home,
                         style = LastKeyTheme.typo.titleMedium
                     )
+                },
+                actions = {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            painter = rememberVectorPainter(LastKeyTheme.materialIcons.Default.MoreVert),
+                            contentDescription = null
+                        )
+                    }
                 }
             )
         }
