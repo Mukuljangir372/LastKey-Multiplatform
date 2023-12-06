@@ -54,6 +54,9 @@ kotlin {
                 api(project(":feature:login:domain"))
                 api(project(":feature:login:ui"))
                 api(project(":feature:splash:ui"))
+                api(project(":feature:home:data"))
+                api(project(":feature:home:domain"))
+                api(project(":feature:home:ui"))
             }
         }
 

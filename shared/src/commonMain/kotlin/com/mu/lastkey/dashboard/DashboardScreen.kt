@@ -22,7 +22,7 @@ import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
-import com.mu.lastkey.home.HomeScreen
+import com.mu.lastkey.feature.home.ui.HomeScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

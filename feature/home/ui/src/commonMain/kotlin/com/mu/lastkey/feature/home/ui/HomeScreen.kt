@@ -1,4 +1,4 @@
-package com.mu.lastkey.home
+package com.mu.lastkey.feature.home.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,7 +36,7 @@ import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-internal class HomeScreen : Screen, KoinComponent {
+class HomeScreen : Screen, KoinComponent {
     @Composable
     override fun Content() {
         val viewModel: HomeViewModel by inject()

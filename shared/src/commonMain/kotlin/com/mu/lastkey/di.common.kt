@@ -10,10 +10,10 @@ import com.mu.lastkey.core.preferences.getCorePreferencesPlatformModule
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.core.utils.di.getCoreUtilsModule
 import com.mu.lastkey.dashboard.DashboardViewModel
+import com.mu.lastkey.feature.home.ui.di.getHomeUiModule
 import com.mu.lastkey.feature.login.data.di.getLoginDataModule
 import com.mu.lastkey.feature.login.ui.di.getLoginUiModule
 import com.mu.lastkey.feature.splash.ui.di.getSplashUiModule
-import com.mu.lastkey.home.HomeViewModel
 import com.mu.lastkey.navigation.AppNavigationImpl
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -33,14 +33,14 @@ internal val dependencies = listOf(
     getLoginDataModule(),
     getLoginUiModule(),
     getSharedModule(),
-    getSplashUiModule()
+    getSplashUiModule(),
+    getHomeUiModule()
 )
 
 private fun getSharedModule(): Module {
     return module {
         single { provideAppNavigation() }
         single { provideDashboardViewModel(get()) }
-        single { provideHomeViewModel(get()) }
     }
 }
 
@@ -52,14 +52,6 @@ private fun provideDashboardViewModel(
     dispatchers: AppCoroutineDispatchers
 ): DashboardViewModel {
     return DashboardViewModel(
-        dispatchers = dispatchers
-    )
-}
-
-private fun provideHomeViewModel(
-    dispatchers: AppCoroutineDispatchers
-): HomeViewModel {
-    return HomeViewModel(
         dispatchers = dispatchers
     )
 }

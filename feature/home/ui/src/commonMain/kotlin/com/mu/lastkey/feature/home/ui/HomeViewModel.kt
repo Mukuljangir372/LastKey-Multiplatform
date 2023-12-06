@@ -1,4 +1,4 @@
-package com.mu.lastkey.home
+package com.mu.lastkey.feature.home.ui
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers

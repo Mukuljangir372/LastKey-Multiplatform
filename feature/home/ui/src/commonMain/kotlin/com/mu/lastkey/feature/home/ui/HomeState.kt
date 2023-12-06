@@ -1,4 +1,4 @@
-package com.mu.lastkey.home
+package com.mu.lastkey.feature.home.ui
 
 import androidx.compose.runtime.Stable
 
