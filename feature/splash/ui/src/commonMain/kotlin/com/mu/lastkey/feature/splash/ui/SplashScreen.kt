@@ -1,4 +1,4 @@
-package com.mu.lastkey.splash
+package com.mu.lastkey.feature.splash.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,7 +24,7 @@ import org.jetbrains.compose.resources.painterResource
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-internal class SplashScreen : Screen, KoinComponent {
+class SplashScreen : Screen, KoinComponent {
     @Composable
     override fun Content() {
         val viewModel: SplashViewModel by inject()

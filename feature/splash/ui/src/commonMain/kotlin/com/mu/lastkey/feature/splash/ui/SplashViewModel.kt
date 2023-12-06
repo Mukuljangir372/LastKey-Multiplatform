@@ -1,4 +1,4 @@
-package com.mu.lastkey.splash
+package com.mu.lastkey.feature.splash.ui
 
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers

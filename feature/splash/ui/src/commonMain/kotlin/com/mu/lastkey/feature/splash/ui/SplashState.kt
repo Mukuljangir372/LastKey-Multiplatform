@@ -1,4 +1,4 @@
-package com.mu.lastkey.splash
+package com.mu.lastkey.feature.splash.ui
 
 import androidx.compose.runtime.Stable
 
