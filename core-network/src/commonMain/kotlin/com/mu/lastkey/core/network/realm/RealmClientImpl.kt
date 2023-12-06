@@ -11,7 +11,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlin.reflect.KClass
 
-class RealmClientImpl(
+internal class RealmClientImpl(
     private val config: RealmConfig
 ) : RealmClient {
     private var loadedApp: App? = null
@@ -21,10 +21,8 @@ class RealmClientImpl(
     override suspend fun getApp(): App {
         return mutex.withLock {
             if (loadedApp != null) return loadedApp!!
-
             val appConfiguration = AppConfiguration.Builder(config.appId)
             val createdApp = App.create(appConfiguration.build())
-
             loadedApp = createdApp
             loadedApp!!
         }
@@ -34,10 +32,8 @@ class RealmClientImpl(
         return mutex.withLock {
             val user = getApp().currentUser ?: throw UserNotFoundException()
             if (loadedRealm != null) return loadedRealm!!
-
             val configuration = SyncConfiguration.Builder(user, config.appId, getSchemas())
             val realm = Realm.open(configuration.build())
-
             loadedRealm = realm
             loadedRealm!!
         }

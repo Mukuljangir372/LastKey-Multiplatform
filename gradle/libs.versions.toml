@@ -22,7 +22,7 @@ mockative = "2.0.1"
 ksp = "1.9.10-1.0.13"
 realm = "1.11.0"
 koin = "3.4.1"
-
+buildKonfig = "0.15.1"
 compose = "1.5.3"
 composeKotlinCompilerExtension = "1.5.3"
 
@@ -36,6 +36,7 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 realm = { id = "io.realm.kotlin", version.ref = "realm" }
+buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }
 
 ## LIBRARIES
 [libraries]
