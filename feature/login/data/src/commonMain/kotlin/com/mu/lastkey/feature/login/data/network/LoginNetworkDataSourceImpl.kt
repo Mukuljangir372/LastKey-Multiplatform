@@ -36,6 +36,6 @@ class LoginNetworkDataSourceImpl(
     }
 
     companion object {
-        private const val TIMEOUT = 3000L
+        private const val TIMEOUT = 10000L
     }
 }
