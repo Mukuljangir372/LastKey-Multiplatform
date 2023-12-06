@@ -34,5 +34,5 @@ include(
     ":feature:password",
     ":feature:password:data",
     ":feature:password:domain",
-    ":feature:password:ui",
+    ":feature:password:ui"
 )

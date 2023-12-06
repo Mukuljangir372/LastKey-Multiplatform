@@ -81,7 +81,7 @@ class LoginRepositoryImpl(
             val authSession = AuthSessionLocalModel(authUserId = userId, active = 1)
             localSource.insertAuthUser(authUser)
             localSource.insertAuthSession(authSession)
-            return authUserMapper.authUserLocalModelToUser(authUser)
+            return authUserMapper.authUserLocalModelToDomain(authUser)
         }
 
         private suspend fun signUp(

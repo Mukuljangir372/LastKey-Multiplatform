@@ -6,9 +6,13 @@ import com.mu.lastkey.core.data.local.AuthUserLocalDataSource
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSourceImpl
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 import com.mu.lastkey.core.data.mapper.AuthUserMapperImpl
+import com.mu.lastkey.core.data.repository.AuthUserRepositoryImpl
+import com.mu.lastkey.core.data.usecase.GetActiveAuthSessionUsecaseImpl
 import com.mu.lastkey.core.domain.InputValidator
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import com.mu.lastkey.core.domain.model.AppStrings
+import com.mu.lastkey.core.domain.repository.AuthUserRepository
+import com.mu.lastkey.core.domain.usecase.GetActiveAuthSessionUsecase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.module.Module
@@ -27,6 +31,8 @@ fun getCoreDataModule(): Module {
         single { provideAppDatabase(get(named(APP_DATABASE_DRIVER))) }
         single { provideAuthUserMapper() }
         single { provideAuthUserLocalDataSource(get(), get()) }
+        single { provideAuthUserRepository(get(), get(), get()) }
+        single { provideGetActiveAuthSessionUsecase(get()) }
     }
 }
 
@@ -61,5 +67,25 @@ private fun provideAuthUserLocalDataSource(
     return AuthUserLocalDataSourceImpl(
         appDatabase = appDatabase,
         authUserMapper = authUserMapper
+    )
+}
+
+private fun provideAuthUserRepository(
+    authUserLocalDataSource: AuthUserLocalDataSource,
+    authUserMapper: AuthUserMapper,
+    coroutineDispatchers: AppCoroutineDispatchers
+): AuthUserRepository {
+    return AuthUserRepositoryImpl(
+        localDataSource = authUserLocalDataSource,
+        mapper = authUserMapper,
+        coroutineDispatcher = coroutineDispatchers.default
+    )
+}
+
+private fun provideGetActiveAuthSessionUsecase(
+    authUserRepository: AuthUserRepository
+): GetActiveAuthSessionUsecase {
+    return GetActiveAuthSessionUsecaseImpl(
+        authUserRepository = authUserRepository
     )
 }

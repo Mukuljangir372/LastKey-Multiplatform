@@ -2,7 +2,7 @@ package com.mu.lastkey.core.data
 
 import com.mu.lastkey.core.domain.InputValidator
 
-class InputValidatorImpl : InputValidator {
+internal class InputValidatorImpl : InputValidator {
     override fun isValidPhone(phone: String): Boolean {
         return REGEX_PHONE.matches(phone)
     }

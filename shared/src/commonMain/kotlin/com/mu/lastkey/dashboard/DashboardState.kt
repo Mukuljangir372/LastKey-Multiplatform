@@ -1,11 +1,11 @@
 package com.mu.lastkey.dashboard
 
-class DashboardState {
+internal class DashboardState {
     companion object {
         val idle = DashboardState()
     }
 }
 
-sealed interface DashboardUiState {
-    object Idle : DashboardUiState
+internal sealed interface DashboardUiState {
+    data object Idle : DashboardUiState
 }

@@ -5,7 +5,7 @@ import com.mu.lastkey.core.data.local.model.AuthSessionLocalModel
 import com.mu.lastkey.core.data.local.model.AuthUserLocalModel
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 
-class AuthUserLocalDataSourceImpl(
+internal class AuthUserLocalDataSourceImpl(
     private val appDatabase: AppDatabase,
     private val authUserMapper: AuthUserMapper
 ) : AuthUserLocalDataSource {
@@ -16,12 +16,12 @@ class AuthUserLocalDataSourceImpl(
 
     override suspend fun getAuthUser(id: String): AuthUserLocalModel? {
         val entity = appDatabase.authuserQueries.getAuthUserById(id).executeAsOneOrNull()
-        return entity?.let { authUserMapper.authUserEntityToLocalModel(it) }
+        return entity?.let { authUserMapper.authUserEntityToLocal(it) }
     }
 
     override suspend fun getActiveAuthSession(): AuthSessionLocalModel? {
         val entity = appDatabase.authuserQueries.getActiveAuthSession().executeAsOneOrNull()
-        return entity?.let { authUserMapper.authSessionEntityToLocalModel(it) }
+        return entity?.let { authUserMapper.authSessionEntityToLocal(it) }
     }
 
     override suspend fun insertAuthUser(model: AuthUserLocalModel) {

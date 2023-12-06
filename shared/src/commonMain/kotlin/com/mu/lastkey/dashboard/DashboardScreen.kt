@@ -24,7 +24,7 @@ import com.mu.lastkey.home.HomeScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class DashboardScreen : Screen, KoinComponent {
+internal class DashboardScreen : Screen, KoinComponent {
     @Composable
     override fun Content() {
         val viewModel: DashboardViewModel by inject()
