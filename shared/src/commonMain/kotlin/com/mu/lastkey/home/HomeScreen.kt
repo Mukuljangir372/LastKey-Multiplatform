@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
@@ -98,7 +97,7 @@ private fun Home(modifier: Modifier) {
 
 @Composable
 private fun Profile(modifier: Modifier) {
-    Cards.Basic(
+    Cards.Primary(
         modifier = modifier
             .wrapContentHeight()
             .padding(
