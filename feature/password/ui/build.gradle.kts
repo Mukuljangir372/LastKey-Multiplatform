@@ -3,6 +3,7 @@
 plugins {
     id("com.mu.lastkey.kmm")
     alias(libs.plugins.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 kotlin {
     sourceSets {

@@ -37,12 +37,12 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class SignInScreen : Screen, KoinComponent {
-    private val viewModel: SignInViewModel by inject()
-    private val appNavigation: AppNavigation by inject()
-
     @Composable
     override fun Content() {
+        val viewModel: SignInViewModel by inject()
+        val appNavigation: AppNavigation by inject()
         val navigator = LocalNavigator.currentOrThrow
+
         SignInUiScreen(
             viewModel = viewModel,
             navigateToSignUp = {

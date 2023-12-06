@@ -25,10 +25,9 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class DashboardScreen : Screen, KoinComponent {
-    private val viewModel: DashboardViewModel by inject()
-
     @Composable
     override fun Content() {
+        val viewModel: DashboardViewModel by inject()
         DashboardUiScreen(viewModel)
     }
 }

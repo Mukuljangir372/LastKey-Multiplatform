@@ -6,6 +6,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     alias(libs.plugins.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -40,6 +41,7 @@ kotlin {
             resources.srcDir("src/commonMain/resources")
             dependencies {
                 implementation(libs.koin)
+                implementation(libs.kotlin.serializaton)
                 api(project(":core-data"))
                 api(project(":core-domain"))
                 api(project(":core-ui"))
@@ -48,7 +50,6 @@ kotlin {
                 api(project(":core-network"))
                 api(project(":core-preferences"))
                 api(project(":core-utils"))
-
                 api(project(":feature:login:data"))
                 api(project(":feature:login:domain"))
                 api(project(":feature:login:ui"))
