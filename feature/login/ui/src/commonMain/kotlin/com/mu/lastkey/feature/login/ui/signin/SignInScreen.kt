@@ -1,6 +1,7 @@
 package com.mu.lastkey.feature.login.ui.signin
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -116,7 +117,8 @@ internal fun SignInUiScreenContent(
     signUp: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
     ) {
         Logo()
         Spacer(modifier = Modifier.size(LastKeyTheme.spacing.ten.dp))
@@ -141,9 +143,11 @@ private fun Logo() {
             .padding(horizontal = LastKeyTheme.spacing.three.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(LastKeyTheme.dimens.three.dp))
+
         Image(
-            modifier = Modifier.height(250.dp),
-            painter = painterResource(LastKeyTheme.icons.SecureWorld),
+            modifier = Modifier.height(70.dp),
+            painter = painterResource(LastKeyTheme.icons.AppIcon),
             contentDescription = null
         )
 
