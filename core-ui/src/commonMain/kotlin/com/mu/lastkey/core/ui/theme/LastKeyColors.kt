@@ -3,13 +3,12 @@ package com.mu.lastkey.core.ui.theme
 import androidx.compose.ui.graphics.Color
 
 object LastKeyColors {
-    val Blue100 = Color(0x9A97C3F8)
+    val Blue100 = Color(0x9ABCDAFF)
     val Blue200 = Color(0x9A529EFA)
-    val Blue300 = Color(0x9A1568CC)
-    val Blue400 = Color(0xFF12355F)
-    val Blue500 = Color(0xFF083569)
+    val Blue500 = Color(0xE14196FF)
 
     val White1000 = Color(0xFFFFFFFF)
+    val White800 = Color(0xFFEBEBEB)
 
     val Black800 = Color(0xFF2C2C2C)
     val Black900 = Color(0xFF1F1E1E)

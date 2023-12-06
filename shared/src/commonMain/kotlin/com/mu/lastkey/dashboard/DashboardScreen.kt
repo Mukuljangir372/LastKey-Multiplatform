@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
+import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import com.mu.lastkey.home.HomeScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -62,20 +64,24 @@ private fun DashboardUiScreen(viewModel: DashboardViewModel) {
         Scaffold(
             modifier = Modifier.fillMaxSize(),
             bottomBar = {
-                NavigationBar(modifier = Modifier.fillMaxWidth()) {
+                NavigationBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    containerColor = LastKeyTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f)
+                ) {
                     navItems.forEach { item ->
                         val selected = selectedScreen == item.screen
                         NavigationBarItem(
                             selected = selected,
+                            onClick = { stateHolder.selectScreen(item.screen) },
                             icon = {
                                 Icon(
                                     painter = rememberVectorPainter(item.icon),
                                     contentDescription = null
                                 )
                             },
-                            onClick = {
-                                stateHolder.selectScreen(item.screen)
-                            }
+                            colors = NavigationBarItemDefaults.colors(
+                                indicatorColor = LastKeyTheme.colorScheme.primary
+                            )
                         )
                     }
                 }
