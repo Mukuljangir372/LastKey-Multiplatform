@@ -4,13 +4,14 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.navigator.Navigator
 import com.mu.lastkey.core.ui.navigation.AppNavigation
 import com.mu.lastkey.dashboard.DashboardScreen
-import com.mu.lastkey.home.HomeScreen
 import com.mu.lastkey.feature.login.ui.signin.SignInScreen
 import com.mu.lastkey.feature.login.ui.signup.SignUpScreen
+import com.mu.lastkey.home.HomeScreen
+import com.mu.lastkey.splash.SplashScreen
 
-class AppNavigationImpl : AppNavigation {
+internal class AppNavigationImpl : AppNavigation {
     override fun initialScreen(): Screen {
-        return SignInScreen()
+        return SplashScreen()
     }
 
     override fun pop(navigator: Navigator): AppNavigation {

@@ -9,12 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
 
-sealed interface DashboardNavScreen {
-    object Home : DashboardNavScreen
-    object Passwords : DashboardNavScreen
-    object Chats : DashboardNavScreen
-    object Search : DashboardNavScreen
-    object More : DashboardNavScreen
+internal sealed interface DashboardNavScreen {
+    data object Home : DashboardNavScreen
+    data object Passwords : DashboardNavScreen
+    data object Chats : DashboardNavScreen
+    data object Search : DashboardNavScreen
+    data object More : DashboardNavScreen
 
     companion object {
         @Composable
@@ -49,7 +49,7 @@ sealed interface DashboardNavScreen {
     }
 }
 
-data class DashboardBottomNavScreen(
+internal data class DashboardBottomNavScreen(
     val screen: DashboardNavScreen,
     val icon: ImageVector,
     val label: String

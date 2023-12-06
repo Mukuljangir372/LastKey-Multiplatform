@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class HomeViewModel(
+internal class HomeViewModel(
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
     private val state = MutableStateFlow(HomeState.idle)

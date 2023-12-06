@@ -3,6 +3,7 @@ package com.mu.lastkey
 import com.mu.lastkey.core.data.getCoreDataModule
 import com.mu.lastkey.core.data.getCoreDataPlatformModule
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
+import com.mu.lastkey.core.domain.usecase.GetActiveAuthSessionUsecase
 import com.mu.lastkey.core.logging.di.getCoreLoggingModule
 import com.mu.lastkey.core.network.di.getCoreNetworkModule
 import com.mu.lastkey.core.preferences.di.getCorePreferencesModule
@@ -14,6 +15,7 @@ import com.mu.lastkey.feature.login.data.di.getLoginDataModule
 import com.mu.lastkey.feature.login.ui.di.getLoginUiModule
 import com.mu.lastkey.home.HomeViewModel
 import com.mu.lastkey.navigation.AppNavigationImpl
+import com.mu.lastkey.splash.SplashViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
@@ -38,7 +40,8 @@ private fun getSharedModule(): Module {
     return module {
         single { provideAppNavigation() }
         single { provideDashboardViewModel(get()) }
-        single { provideHomeViewModel(get() )}
+        single { provideHomeViewModel(get()) }
+        single { provideSplashViewModel(get(), get()) }
     }
 }
 
@@ -62,3 +65,12 @@ private fun provideHomeViewModel(
     )
 }
 
+private fun provideSplashViewModel(
+    dispatchers: AppCoroutineDispatchers,
+    getActiveAuthSessionUsecase: GetActiveAuthSessionUsecase
+): SplashViewModel {
+    return SplashViewModel(
+        getActiveAuthSessionUsecase = getActiveAuthSessionUsecase,
+        dispatchers = dispatchers
+    )
+}

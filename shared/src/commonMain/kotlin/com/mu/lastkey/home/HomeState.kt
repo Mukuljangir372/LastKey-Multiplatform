@@ -1,6 +1,6 @@
 package com.mu.lastkey.home
 
-data class HomeState(
+internal data class HomeState(
     val loading: Boolean
 ) {
     companion object {
@@ -10,8 +10,8 @@ data class HomeState(
     }
 }
 
-sealed interface HomeUiState {
-    object Idle : HomeUiState
-    object Loading : HomeUiState
-    object Home : HomeUiState
+internal sealed interface HomeUiState {
+    data object Idle : HomeUiState
+    data object Loading : HomeUiState
+    data object Home : HomeUiState
 }

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 // NOTE: collectAsState or get() mark as @Composable crash on ios
 @Stable
-class DashboardStateHolder {
+internal class DashboardStateHolder {
     private val _selectedScreen = MutableStateFlow<DashboardNavScreen>(DashboardNavScreen.Home)
     val selectedScreen: StateFlow<DashboardNavScreen> get() = _selectedScreen
 
