@@ -1,5 +1,7 @@
 package com.mu.lastkey.home
 
+import androidx.compose.runtime.Stable
+
 internal data class HomeState(
     val loading: Boolean
 ) {
@@ -10,8 +12,8 @@ internal data class HomeState(
     }
 }
 
+@Stable
 internal sealed interface HomeUiState {
-    data object Idle : HomeUiState
     data object Loading : HomeUiState
     data object Home : HomeUiState
 }

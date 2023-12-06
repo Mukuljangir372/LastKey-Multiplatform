@@ -17,9 +17,9 @@ import com.mu.lastkey.core.ui.calculateLocalWindow
 
 private fun getLightColorScheme(): ColorScheme {
     return lightColorScheme(
-        primary = LastKeyColors.Black1000,
+        primary = LastKeyColors.Blue500,
         onPrimary = LastKeyColors.White1000,
-        primaryContainer = LastKeyColors.Black800,
+        primaryContainer = LastKeyColors.White800,
         onPrimaryContainer = LastKeyColors.Black900,
         secondary = LastKeyColors.Blue200,
         onSecondary = LastKeyColors.White1000,
@@ -28,7 +28,7 @@ private fun getLightColorScheme(): ColorScheme {
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.White1000,
         tertiaryContainer = LastKeyColors.Blue200,
-        onTertiaryContainer = LastKeyColors.Blue500,
+        onTertiaryContainer = LastKeyColors.Blue100,
         error = LastKeyColors.Red1000,
         onError = LastKeyColors.White1000,
         errorContainer = LastKeyColors.Red500,
@@ -36,7 +36,8 @@ private fun getLightColorScheme(): ColorScheme {
         surface = LastKeyColors.White1000,
         onSurface = LastKeyColors.Black1000,
         background = LastKeyColors.White1000,
-        onBackground = LastKeyColors.Black1000
+        onBackground = LastKeyColors.Black1000,
+        outline = LastKeyColors.Grey100
     )
 }
 
@@ -53,7 +54,7 @@ private fun getDarkColorScheme(): ColorScheme {
         tertiary = LastKeyColors.Blue100,
         onTertiary = LastKeyColors.Black1000,
         tertiaryContainer = LastKeyColors.Blue200,
-        onTertiaryContainer = LastKeyColors.Blue500,
+        onTertiaryContainer = LastKeyColors.Blue100,
         error = LastKeyColors.Red1000,
         onError = LastKeyColors.Black1000,
         errorContainer = LastKeyColors.Red500,

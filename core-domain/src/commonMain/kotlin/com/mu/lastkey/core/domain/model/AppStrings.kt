@@ -18,7 +18,9 @@ data class AppStrings(
     val home: String,
     val chats: String,
     val search: String,
-    val more: String
+    val more: String,
+    val profile: String,
+    val viewProfile: String,
 ) {
     companion object {
         val en = AppStrings(
@@ -39,7 +41,9 @@ data class AppStrings(
             home = "Home",
             chats = "Chats",
             search = "Search",
-            more = "More"
+            more = "More",
+            profile = "Profile",
+            viewProfile = "View Profile"
         )
     }
 }
