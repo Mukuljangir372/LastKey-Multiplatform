@@ -10,7 +10,7 @@ import com.mu.lastkey.feature.login.ui.signup.SignUpScreen
 
 class AppNavigationImpl : AppNavigation {
     override fun initialScreen(): Screen {
-        return DashboardScreen()
+        return SignInScreen()
     }
 
     override fun pop(navigator: Navigator): AppNavigation {
