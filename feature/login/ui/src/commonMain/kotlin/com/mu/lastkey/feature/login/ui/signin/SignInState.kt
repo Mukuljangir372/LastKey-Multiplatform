@@ -1,5 +1,6 @@
 package com.mu.lastkey.feature.login.ui.signin
 
+import androidx.compose.runtime.Stable
 import com.mu.lastkey.core.ui.model.MessageWrapper
 
 internal data class SignInState(
@@ -22,10 +23,11 @@ internal data class SignInState(
     }
 }
 
+@Stable
 sealed interface SignInUiState {
-    object Idle : SignInUiState
-    object SignUp : SignInUiState
-    object Success : SignInUiState
+    data object Idle : SignInUiState
+    data object SignUp : SignInUiState
+    data object Success : SignInUiState
 
     data class SignIn(
         val email: String,

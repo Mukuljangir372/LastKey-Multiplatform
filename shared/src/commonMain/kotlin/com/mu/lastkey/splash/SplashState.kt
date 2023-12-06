@@ -1,5 +1,7 @@
 package com.mu.lastkey.splash
 
+import androidx.compose.runtime.Stable
+
 internal data class SplashState(
     val loading: Boolean,
     val login: Boolean,
@@ -14,6 +16,7 @@ internal data class SplashState(
     }
 }
 
+@Stable
 internal sealed interface SplashUiState {
     data object Loading : SplashUiState
     data object Login : SplashUiState
