@@ -20,7 +20,7 @@ data class AppStrings(
     val search: String,
     val more: String,
     val profile: String,
-    val viewProfile: String,
+    val viewProfile: String
 ) {
     companion object {
         val en = AppStrings(
