@@ -5,8 +5,9 @@ import io.realm.kotlin.types.annotations.PrimaryKey
 import org.mongodb.kbson.ObjectId
 
 @Suppress("PropertyName")
-class UserRealmModel : RealmObject {
+class CredentialFieldRealmModel : RealmObject {
     @PrimaryKey
     var _id: ObjectId = ObjectId()
-    var email: String = ""
+    var label: String = ""
+    var value: String = ""
 }

@@ -1,6 +1,7 @@
 plugins {
     id("com.mu.lastkey.kmm")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.sqldelight)
 }
 kotlin {
     sourceSets {
@@ -16,6 +17,7 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
+                api(libs.sqldelight.coroutines)
                 implementation(libs.kotlin.coroutines.core)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.kotlin.serializaton)

@@ -40,5 +40,5 @@ include(
     ":feature:home",
     ":feature:home:data",
     ":feature:home:domain",
-    ":feature:home:ui",
+    ":feature:home:ui"
 )
