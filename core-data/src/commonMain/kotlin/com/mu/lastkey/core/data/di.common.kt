@@ -4,8 +4,12 @@ import app.cash.sqldelight.db.SqlDriver
 import com.mu.lastkey.core.data.local.AppDatabaseFactory
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSource
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSourceImpl
+import com.mu.lastkey.core.data.local.CredentialLocalDataSource
+import com.mu.lastkey.core.data.local.CredentialLocalDataSourceImpl
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 import com.mu.lastkey.core.data.mapper.AuthUserMapperImpl
+import com.mu.lastkey.core.data.mapper.CredentialMapper
+import com.mu.lastkey.core.data.mapper.CredentialMapperImpl
 import com.mu.lastkey.core.data.repository.AuthUserRepositoryImpl
 import com.mu.lastkey.core.data.usecase.GetActiveAuthSessionUsecaseImpl
 import com.mu.lastkey.core.domain.InputValidator
@@ -30,7 +34,9 @@ fun getCoreDataModule(): Module {
         single { provideAppCoroutineDispatchers() }
         single { provideAppDatabase(get(named(APP_DATABASE_DRIVER))) }
         single { provideAuthUserMapper() }
+        single { provideCredentialMapper() }
         single { provideAuthUserLocalDataSource(get(), get()) }
+        single { provideCredentialLocalDataSource(get(), get()) }
         single { provideAuthUserRepository(get(), get(), get()) }
         single { provideGetActiveAuthSessionUsecase(get()) }
     }
@@ -56,6 +62,10 @@ private fun provideAuthUserMapper(): AuthUserMapper {
     return AuthUserMapperImpl()
 }
 
+private fun provideCredentialMapper(): CredentialMapper {
+    return CredentialMapperImpl()
+}
+
 private fun provideInputValidator(): InputValidator {
     return InputValidatorImpl()
 }
@@ -67,6 +77,16 @@ private fun provideAuthUserLocalDataSource(
     return AuthUserLocalDataSourceImpl(
         appDatabase = appDatabase,
         authUserMapper = authUserMapper
+    )
+}
+
+private fun provideCredentialLocalDataSource(
+    appDatabase: AppDatabase,
+    credentialMapper: CredentialMapper
+): CredentialLocalDataSource {
+    return CredentialLocalDataSourceImpl(
+        database = appDatabase,
+        mapper = credentialMapper
     )
 }
 

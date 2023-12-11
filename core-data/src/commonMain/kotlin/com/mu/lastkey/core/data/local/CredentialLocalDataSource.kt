@@ -3,7 +3,6 @@ package com.mu.lastkey.core.data.local
 import com.mu.lastkey.core.data.local.model.CredentialLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionFieldLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionLocalModel
-import com.mu.lastkey.core.data.local.model.CredentialWithSectionsLocalModel
 import kotlinx.coroutines.flow.Flow
 
 interface CredentialLocalDataSource {
@@ -19,11 +18,10 @@ interface CredentialLocalDataSource {
     ): Flow<List<CredentialSectionLocalModel>>
 
     suspend fun getCredentialById(id: String): CredentialLocalModel?
-    suspend fun getCredentialWithSections(id: String): CredentialWithSectionsLocalModel?
     suspend fun insertCredentials(list: List<CredentialLocalModel>)
-    suspend fun insertSection(model: CredentialSectionLocalModel)
-    suspend fun insertField(model: CredentialSectionFieldLocalModel)
-    suspend fun deleteCredentialById(id: String)
-    suspend fun deleteSectionById(id: String)
-    suspend fun deleteFieldById(id: String)
+    suspend fun insertSections(list: List<CredentialSectionLocalModel>)
+    suspend fun insertFields(list: List<CredentialSectionFieldLocalModel>)
+    suspend fun deleteCredentialsById(id: List<String>)
+    suspend fun deleteSectionsById(id: List<String>)
+    suspend fun deleteFieldsById(id: List<String>)
 }
