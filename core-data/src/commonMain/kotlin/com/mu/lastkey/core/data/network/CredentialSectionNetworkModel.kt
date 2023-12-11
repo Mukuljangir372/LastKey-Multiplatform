@@ -7,6 +7,7 @@ import kotlinx.serialization.Serializable
 data class CredentialSectionNetworkModel(
     val id: String,
     val name: String,
+    val credentialId: String,
     val fields: List<CredentialSectionFieldNetworkModel>,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime

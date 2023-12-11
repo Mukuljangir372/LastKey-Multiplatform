@@ -4,7 +4,7 @@ import kotlinx.datetime.LocalDateTime
 
 data class Credential(
     val id: String,
-    val displayName: String,
+    val name: String,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 )
