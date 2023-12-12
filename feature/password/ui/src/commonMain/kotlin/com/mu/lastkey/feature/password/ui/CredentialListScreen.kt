@@ -72,7 +72,8 @@ private fun CredentialListUiScreen(viewModel: CredentialListViewModel) {
         },
         floatingActionButton = {
             ExtendedFloatingActionButton(
-                onClick = {}, // TODO: Handle Click
+                modifier = Modifier.padding(bottom = 80.dp),
+                onClick = {},
                 icon = { Icon(LastKeyTheme.materialIcons.Default.Add, null) },
                 text = { Text(LastKeyTheme.strings.addCredential) }
             )
