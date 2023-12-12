@@ -139,8 +139,8 @@ private fun PasswordListItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    vertical = LastKeyTheme.dimens.two.dp,
-                    horizontal = LastKeyTheme.dimens.half.dp
+                    vertical = LastKeyTheme.dimens.one.dp + LastKeyTheme.dimens.half.dp,
+                    horizontal = LastKeyTheme.dimens.two.dp
                 )
         ) {
             Text(
