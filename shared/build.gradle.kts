@@ -57,9 +57,9 @@ kotlin {
                 api(project(":feature:home:data"))
                 api(project(":feature:home:domain"))
                 api(project(":feature:home:ui"))
-                api(project(":feature:password:data"))
-                api(project(":feature:password:domain"))
-                api(project(":feature:password:ui"))
+                api(project(":feature:credential:data"))
+                api(project(":feature:credential:domain"))
+                api(project(":feature:credential:ui"))
             }
         }
 

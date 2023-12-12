@@ -11,5 +11,5 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.feature.password.domain"
+    namespace = "com.mu.lastkey.feature.credential.domain"
 }
