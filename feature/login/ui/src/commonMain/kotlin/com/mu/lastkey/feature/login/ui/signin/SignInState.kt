@@ -1,8 +1,10 @@
 package com.mu.lastkey.feature.login.ui.signin
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import com.mu.lastkey.core.ui.model.MessageWrapper
 
+@Stable
 internal data class SignInState(
     val email: String,
     val password: String,
@@ -23,8 +25,8 @@ internal data class SignInState(
     }
 }
 
-@Stable
-sealed interface SignInUiState {
+@Immutable
+internal sealed interface SignInUiState {
     data object Idle : SignInUiState
     data object SignUp : SignInUiState
     data object Success : SignInUiState

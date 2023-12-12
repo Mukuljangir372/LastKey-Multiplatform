@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class SignInViewModel(
+internal class SignInViewModel(
     private val signInUsecase: SignInUsecase,
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {

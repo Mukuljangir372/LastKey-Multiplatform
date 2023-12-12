@@ -26,7 +26,7 @@ object Toolbars {
                 navigationIcon = navigationIcon,
                 actions = actions,
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = LastKeyTheme.colorScheme.secondaryContainer.copy(alpha = 0.3f),
+                    containerColor = LastKeyTheme.colorScheme.surface,
                     navigationIconContentColor = LastKeyTheme.colorScheme.primary,
                     titleContentColor = LastKeyTheme.colorScheme.primary,
                     actionIconContentColor = LastKeyTheme.colorScheme.primary

@@ -33,8 +33,8 @@ private fun getLightColorScheme(): ColorScheme {
         onError = LastKeyColors.White1000,
         errorContainer = LastKeyColors.Red500,
         onErrorContainer = LastKeyColors.Red1100,
-        surface = LastKeyColors.White1000,
-        onSurface = LastKeyColors.Black1000,
+        surface = LastKeyColors.Blue50,
+        onSurface = LastKeyColors.White1000,
         background = LastKeyColors.White1000,
         onBackground = LastKeyColors.Black1000,
         outline = LastKeyColors.Grey100
@@ -59,7 +59,7 @@ private fun getDarkColorScheme(): ColorScheme {
         onError = LastKeyColors.Black1000,
         errorContainer = LastKeyColors.Red500,
         onErrorContainer = LastKeyColors.Red1100,
-        surface = LastKeyColors.Black1000,
+        surface = LastKeyColors.Blue50,
         onSurface = LastKeyColors.White1000,
         background = LastKeyColors.Black1000,
         onBackground = LastKeyColors.White1000

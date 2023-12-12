@@ -23,6 +23,7 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import com.mu.lastkey.feature.home.ui.HomeScreen
+import com.mu.lastkey.feature.password.ui.PasswordListScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -106,7 +107,7 @@ private object PasswordsTab : Tab {
 
     @Composable
     override fun Content() {
-        Text("Passwords")
+        PasswordListScreen().Content()
     }
 }
 
