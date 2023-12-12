@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
-internal class PasswordListViewModel(
+internal class CredentialListViewModel(
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
     private var scope: CoroutineScope? = null
 
-    private val state = MutableStateFlow(PasswordListState.idle)
-    val uiState: Flow<PasswordListUiState> get() = state.map { mapStateToUiState(it) }
+    private val state = MutableStateFlow(CredentialListState.idle)
+    val uiState: Flow<CredentialListUiState> get() = state.map { mapStateToUiState(it) }
 
     private fun resetScope() {
         scope?.cancel()
@@ -32,14 +32,14 @@ internal class PasswordListViewModel(
 
     companion object {
         private fun mapStateToUiState(
-            state: PasswordListState
-        ): PasswordListUiState {
+            state: CredentialListState
+        ): CredentialListUiState {
             return if (state.loading) {
-                PasswordListUiState.Loading
-            } else if (state.passwords.isNotEmpty()) {
-                PasswordListUiState.Passwords(passwords = state.passwords)
+                CredentialListUiState.Loading
+            } else if (state.credentials.isNotEmpty()) {
+                CredentialListUiState.Credentials(list = state.credentials)
             } else {
-                PasswordListUiState.NoResults
+                CredentialListUiState.NoResults
             }
         }
     }

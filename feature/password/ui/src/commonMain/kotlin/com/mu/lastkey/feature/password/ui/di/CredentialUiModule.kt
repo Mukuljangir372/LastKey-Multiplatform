@@ -1,11 +1,11 @@
 package com.mu.lastkey.feature.password.ui.di
 
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
-import com.mu.lastkey.feature.password.ui.PasswordListViewModel
+import com.mu.lastkey.feature.password.ui.CredentialListViewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-fun getPasswordUiModule(): Module {
+fun getCredentialUiModule(): Module {
     return module {
         single { providePasswordListViewModel(get()) }
     }
@@ -13,8 +13,8 @@ fun getPasswordUiModule(): Module {
 
 private fun providePasswordListViewModel(
     dispatchers: AppCoroutineDispatchers
-): PasswordListViewModel {
-    return PasswordListViewModel(
+): CredentialListViewModel {
+    return CredentialListViewModel(
         dispatchers = dispatchers
     )
 }

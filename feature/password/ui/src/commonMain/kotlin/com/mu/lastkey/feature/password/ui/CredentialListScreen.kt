@@ -8,7 +8,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -26,21 +29,21 @@ import com.mu.lastkey.core.ui.components.Cards
 import com.mu.lastkey.core.ui.components.Loaders
 import com.mu.lastkey.core.ui.components.Toolbars
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
-import com.mu.lastkey.feature.password.ui.model.PasswordDisplayModel
+import com.mu.lastkey.feature.password.ui.model.CredentialDisplayModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class PasswordListScreen : Screen, KoinComponent {
+class CredentialListScreen : Screen, KoinComponent {
     @Composable
     override fun Content() {
-        val viewModel: PasswordListViewModel by inject()
-        PasswordListUiScreen(viewModel)
+        val viewModel: CredentialListViewModel by inject()
+        CredentialListUiScreen(viewModel)
     }
 }
 
 @Composable
-private fun PasswordListUiScreen(viewModel: PasswordListViewModel) {
-    val state by viewModel.uiState.collectAsState(PasswordListUiState.Loading)
+private fun CredentialListUiScreen(viewModel: CredentialListViewModel) {
+    val state by viewModel.uiState.collectAsState(CredentialListUiState.Loading)
 
     LaunchedEffect(Unit) {
         viewModel.start()
@@ -53,7 +56,7 @@ private fun PasswordListUiScreen(viewModel: PasswordListViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 title = {
                     Text(
-                        text = LastKeyTheme.strings.passwords,
+                        text = LastKeyTheme.strings.credentials,
                         style = LastKeyTheme.typo.titleMedium
                     )
                 },
@@ -66,10 +69,18 @@ private fun PasswordListUiScreen(viewModel: PasswordListViewModel) {
                     }
                 }
             )
-        }
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                onClick = {}, // TODO: Handle Click
+                icon = { Icon(LastKeyTheme.materialIcons.Default.Add, null) },
+                text = { Text(LastKeyTheme.strings.addCredential) }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.End
     ) { paddingValues ->
         when (state) {
-            PasswordListUiState.Loading -> {
+            CredentialListUiState.Loading -> {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -80,17 +91,17 @@ private fun PasswordListUiScreen(viewModel: PasswordListViewModel) {
                 }
             }
 
-            is PasswordListUiState.Passwords -> {
-                Passwords(
+            is CredentialListUiState.Credentials -> {
+                Credentials(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues)
                         .background(LastKeyTheme.colorScheme.surface),
-                    state = state as PasswordListUiState.Passwords
+                    state = state as CredentialListUiState.Credentials
                 )
             }
 
-            PasswordListUiState.NoResults -> {
+            CredentialListUiState.NoResults -> {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -105,27 +116,27 @@ private fun PasswordListUiScreen(viewModel: PasswordListViewModel) {
 }
 
 @Composable
-private fun Passwords(
+private fun Credentials(
     modifier: Modifier,
-    state: PasswordListUiState.Passwords
+    state: CredentialListUiState.Credentials
 ) {
     LazyColumn(modifier) {
         items(
-            count = state.passwords.size,
-            key = { state.passwords[it].id }
+            count = state.list.size,
+            key = { state.list[it].id }
         ) { index ->
-            PasswordListItem(
+            CredentialListItem(
                 modifier = Modifier.fillMaxWidth(),
-                model = state.passwords[index]
+                model = state.list[index]
             )
         }
     }
 }
 
 @Composable
-private fun PasswordListItem(
+private fun CredentialListItem(
     modifier: Modifier,
-    model: PasswordDisplayModel
+    model: CredentialDisplayModel
 ) {
     Cards.Primary(
         modifier = modifier
