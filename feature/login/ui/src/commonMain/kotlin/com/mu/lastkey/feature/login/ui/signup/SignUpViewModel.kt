@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-class SignUpViewModel(
+internal class SignUpViewModel(
     private val signUpUsecase: SignUpUsecase,
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
@@ -27,7 +27,7 @@ class SignUpViewModel(
     private fun resetScope() {
         scope?.cancel()
         scope = null
-        scope = CoroutineScope(dispatchers.main)
+        scope = CoroutineScope(dispatchers.default)
     }
 
     override fun onDispose() {

@@ -22,7 +22,7 @@ object Cards {
                 contentColor = LastKeyTheme.colorScheme.onBackground
             ),
             elevation = CardDefaults.elevatedCardElevation(
-                defaultElevation = LastKeyTheme.dimens.quarter.dp
+                defaultElevation = 1.dp
             )
         )
     }

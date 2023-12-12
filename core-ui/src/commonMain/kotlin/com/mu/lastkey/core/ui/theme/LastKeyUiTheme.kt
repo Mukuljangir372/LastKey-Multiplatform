@@ -19,8 +19,8 @@ private fun getLightColorScheme(): ColorScheme {
     return lightColorScheme(
         primary = LastKeyColors.Blue500,
         onPrimary = LastKeyColors.White1000,
-        primaryContainer = LastKeyColors.White800,
-        onPrimaryContainer = LastKeyColors.Black900,
+        primaryContainer = LastKeyColors.Blue500,
+        onPrimaryContainer = LastKeyColors.White1000,
         secondary = LastKeyColors.Blue200,
         onSecondary = LastKeyColors.White1000,
         secondaryContainer = LastKeyColors.Blue100,
@@ -33,8 +33,8 @@ private fun getLightColorScheme(): ColorScheme {
         onError = LastKeyColors.White1000,
         errorContainer = LastKeyColors.Red500,
         onErrorContainer = LastKeyColors.Red1100,
-        surface = LastKeyColors.White1000,
-        onSurface = LastKeyColors.Black1000,
+        surface = LastKeyColors.Blue50,
+        onSurface = LastKeyColors.White1000,
         background = LastKeyColors.White1000,
         onBackground = LastKeyColors.Black1000,
         outline = LastKeyColors.Grey100
@@ -45,7 +45,7 @@ private fun getDarkColorScheme(): ColorScheme {
     return darkColorScheme(
         primary = LastKeyColors.White1000,
         onPrimary = LastKeyColors.Black1000,
-        primaryContainer = LastKeyColors.White1000,
+        primaryContainer = LastKeyColors.Blue500,
         onPrimaryContainer = LastKeyColors.Black1000,
         secondary = LastKeyColors.Blue200,
         onSecondary = LastKeyColors.Black1000,
@@ -59,7 +59,7 @@ private fun getDarkColorScheme(): ColorScheme {
         onError = LastKeyColors.Black1000,
         errorContainer = LastKeyColors.Red500,
         onErrorContainer = LastKeyColors.Red1100,
-        surface = LastKeyColors.Black1000,
+        surface = LastKeyColors.Blue50,
         onSurface = LastKeyColors.White1000,
         background = LastKeyColors.Black1000,
         onBackground = LastKeyColors.White1000
@@ -76,7 +76,7 @@ internal val LocalAppStrings = staticCompositionLocalOf { AppStrings.en }
 
 @Composable
 fun LastKeyUiTheme(
-    isDarkMode: Boolean = isSystemInDarkTheme(),
+    isDarkMode: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val windowSize = calculateLocalWindow()

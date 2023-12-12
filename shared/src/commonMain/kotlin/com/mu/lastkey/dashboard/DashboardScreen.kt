@@ -23,6 +23,7 @@ import cafe.adriel.voyager.navigator.tab.TabNavigator
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
 import com.mu.lastkey.feature.home.ui.HomeScreen
+import com.mu.lastkey.feature.password.ui.CredentialListScreen
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -47,8 +48,8 @@ private fun DashboardUiScreen(viewModel: DashboardViewModel) {
             DashboardNavScreen.Home -> {
                 tabNavigator.current = HomeTab
             }
-            DashboardNavScreen.Passwords -> {
-                tabNavigator.current = PasswordsTab
+            DashboardNavScreen.Credentials -> {
+                tabNavigator.current = CredentialsTab
             }
             DashboardNavScreen.Search -> {
                 tabNavigator.current = SearchTab
@@ -100,13 +101,13 @@ private object HomeTab : Tab {
     }
 }
 
-private object PasswordsTab : Tab {
+private object CredentialsTab : Tab {
     override val options: TabOptions
         @Composable get() = remember { TabOptions(index = 0u, title = "") }
 
     @Composable
     override fun Content() {
-        Text("Passwords")
+        CredentialListScreen().Content()
     }
 }
 

@@ -1,20 +1,17 @@
-package com.mu.lastkey.feature.home.ui
+package com.mu.lastkey.feature.password.ui
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -25,7 +22,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
@@ -33,20 +29,21 @@ import com.mu.lastkey.core.ui.components.Cards
 import com.mu.lastkey.core.ui.components.Loaders
 import com.mu.lastkey.core.ui.components.Toolbars
 import com.mu.lastkey.core.ui.theme.LastKeyTheme
+import com.mu.lastkey.feature.password.ui.model.CredentialDisplayModel
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class HomeScreen : Screen, KoinComponent {
+class CredentialListScreen : Screen, KoinComponent {
     @Composable
     override fun Content() {
-        val viewModel: HomeViewModel by inject()
-        HomeUiScreen(viewModel)
+        val viewModel: CredentialListViewModel by inject()
+        CredentialListUiScreen(viewModel)
     }
 }
 
 @Composable
-private fun HomeUiScreen(viewModel: HomeViewModel) {
-    val state by viewModel.uiState.collectAsState(HomeUiState.Home)
+private fun CredentialListUiScreen(viewModel: CredentialListViewModel) {
+    val state by viewModel.uiState.collectAsState(CredentialListUiState.Loading)
 
     LaunchedEffect(Unit) {
         viewModel.start()
@@ -59,7 +56,7 @@ private fun HomeUiScreen(viewModel: HomeViewModel) {
                 modifier = Modifier.fillMaxWidth(),
                 title = {
                     Text(
-                        text = LastKeyTheme.strings.home,
+                        text = LastKeyTheme.strings.credentials,
                         style = LastKeyTheme.typo.titleMedium
                     )
                 },
@@ -72,10 +69,19 @@ private fun HomeUiScreen(viewModel: HomeViewModel) {
                     }
                 }
             )
-        }
+        },
+        floatingActionButton = {
+            ExtendedFloatingActionButton(
+                modifier = Modifier.padding(bottom = 80.dp),
+                onClick = {},
+                icon = { Icon(LastKeyTheme.materialIcons.Default.Add, null) },
+                text = { Text(LastKeyTheme.strings.addCredential) }
+            )
+        },
+        floatingActionButtonPosition = FabPosition.End
     ) { paddingValues ->
         when (state) {
-            HomeUiState.Loading -> {
+            CredentialListUiState.Loading -> {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -86,27 +92,53 @@ private fun HomeUiScreen(viewModel: HomeViewModel) {
                 }
             }
 
-            HomeUiState.Home -> {
-                Home(
+            is CredentialListUiState.Credentials -> {
+                Credentials(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValues)
+                        .background(LastKeyTheme.colorScheme.surface),
+                    state = state as CredentialListUiState.Credentials
+                )
+            }
+
+            CredentialListUiState.NoResults -> {
+                Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues)
                         .background(LastKeyTheme.colorScheme.surface)
-                )
+                ) {
+                    Text(LastKeyTheme.strings.noResults)
+                }
             }
         }
     }
 }
 
 @Composable
-private fun Home(modifier: Modifier) {
-    Column(modifier = modifier) {
-        Profile(modifier = Modifier.fillMaxWidth())
+private fun Credentials(
+    modifier: Modifier,
+    state: CredentialListUiState.Credentials
+) {
+    LazyColumn(modifier) {
+        items(
+            count = state.list.size,
+            key = { state.list[it].id }
+        ) { index ->
+            CredentialListItem(
+                modifier = Modifier.fillMaxWidth(),
+                model = state.list[index]
+            )
+        }
     }
 }
 
 @Composable
-private fun Profile(modifier: Modifier) {
+private fun CredentialListItem(
+    modifier: Modifier,
+    model: CredentialDisplayModel
+) {
     Cards.Primary(
         modifier = modifier
             .wrapContentHeight()
@@ -115,43 +147,22 @@ private fun Profile(modifier: Modifier) {
                 horizontal = LastKeyTheme.dimens.two.dp
             )
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
-                    vertical = LastKeyTheme.dimens.two.dp,
-                    horizontal = LastKeyTheme.dimens.half.dp
-                ),
-            verticalAlignment = Alignment.CenterVertically
+                    vertical = LastKeyTheme.dimens.one.dp + LastKeyTheme.dimens.half.dp,
+                    horizontal = LastKeyTheme.dimens.two.dp
+                )
         ) {
-            Spacer(modifier = Modifier.width(LastKeyTheme.dimens.two.dp))
-
-            Box(
-                modifier = Modifier
-                    .size(LastKeyTheme.dimens.four.dp)
-                    .clip(CircleShape)
-                    .background(LastKeyTheme.colorScheme.secondaryContainer),
-                contentAlignment = Alignment.Center
-            ) {
-                Image(
-                    modifier = Modifier.size(LastKeyTheme.dimens.two.dp),
-                    imageVector = LastKeyTheme.materialIcons.Default.Person,
-                    contentDescription = null
-                )
-            }
-
-            Spacer(modifier = Modifier.width(LastKeyTheme.dimens.two.dp))
-
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = LastKeyTheme.strings.profile,
-                    style = LastKeyTheme.typo.titleMedium
-                )
-                Text(
-                    text = LastKeyTheme.strings.viewProfile,
-                    style = LastKeyTheme.typo.bodySmall
-                )
-            }
+            Text(
+                text = model.name,
+                style = LastKeyTheme.typo.titleMedium
+            )
+            Text(
+                text = model.description,
+                style = LastKeyTheme.typo.bodySmall
+            )
         }
     }
 }

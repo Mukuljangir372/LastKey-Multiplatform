@@ -1,7 +1,6 @@
 package com.mu.lastkey.dashboard
 
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
@@ -11,7 +10,7 @@ import com.mu.lastkey.core.ui.theme.LastKeyTheme
 
 internal sealed interface DashboardNavScreen {
     data object Home : DashboardNavScreen
-    data object Passwords : DashboardNavScreen
+    data object Credentials : DashboardNavScreen
     data object Search : DashboardNavScreen
     data object More : DashboardNavScreen
 
@@ -23,10 +22,10 @@ internal sealed interface DashboardNavScreen {
                 icon = LastKeyTheme.materialIcons.Default.Home,
                 label = LastKeyTheme.strings.home
             )
-            val passwords = DashboardBottomNavScreen(
-                screen = Passwords,
+            val credentials = DashboardBottomNavScreen(
+                screen = Credentials,
                 icon = LastKeyTheme.materialIcons.Default.Menu,
-                label = LastKeyTheme.strings.passwords
+                label = LastKeyTheme.strings.credentials
             )
             val search = DashboardBottomNavScreen(
                 screen = Search,
@@ -38,7 +37,7 @@ internal sealed interface DashboardNavScreen {
                 icon = LastKeyTheme.materialIcons.Default.Settings,
                 label = LastKeyTheme.strings.more
             )
-            return listOf(home, passwords, search, more)
+            return listOf(home, credentials, search, more)
         }
     }
 }
