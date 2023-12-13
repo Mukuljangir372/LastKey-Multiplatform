@@ -21,6 +21,8 @@ internal data class CredentialListState(
 @Immutable
 internal sealed interface CredentialListUiState {
     data object Loading : CredentialListUiState
+
+    @Stable
     data class Credentials(val list: List<CredentialDisplayModel>) : CredentialListUiState
     data object NoResults : CredentialListUiState
 }
