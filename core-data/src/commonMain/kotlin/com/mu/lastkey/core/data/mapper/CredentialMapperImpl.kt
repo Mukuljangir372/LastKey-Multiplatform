@@ -17,7 +17,6 @@ import com.mu.lastkey.core.utils.date.toRealmInstant
 import commulastkeycoredata.CredentialEntity
 import commulastkeycoredata.CredentialSectionEntity
 import commulastkeycoredata.CredentialSectionFieldEntity
-import org.mongodb.kbson.BsonObjectId
 import org.mongodb.kbson.ObjectId
 
 internal class CredentialMapperImpl : CredentialMapper {
