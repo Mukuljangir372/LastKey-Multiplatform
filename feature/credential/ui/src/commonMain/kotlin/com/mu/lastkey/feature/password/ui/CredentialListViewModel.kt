@@ -1,5 +1,6 @@
 package com.mu.lastkey.feature.password.ui
 
+import androidx.compose.runtime.Immutable
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import kotlinx.coroutines.CoroutineScope
@@ -8,6 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 
+@Immutable
 internal class CredentialListViewModel(
     private val dispatchers: AppCoroutineDispatchers
 ) : ScreenModel {
