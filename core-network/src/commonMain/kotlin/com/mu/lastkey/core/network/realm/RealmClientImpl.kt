@@ -1,7 +1,7 @@
 package com.mu.lastkey.core.network.realm
 
 import com.mu.lastkey.core.network.realm.exception.UserNotFoundException
-import com.mu.lastkey.core.network.realm.model.CredentialFieldRealmModel
+import com.mu.lastkey.core.network.realm.model.CredentialSectionFieldRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialSectionRealmModel
 import com.mu.lastkey.core.network.realm.model.UserRealmModel
@@ -46,7 +46,7 @@ internal class RealmClientImpl(
         private fun getSchemas(): Set<KClass<out BaseRealmObject>> {
             return setOf(
                 UserRealmModel::class,
-                CredentialFieldRealmModel::class,
+                CredentialSectionFieldRealmModel::class,
                 CredentialSectionRealmModel::class,
                 CredentialRealmModel::class
             )
