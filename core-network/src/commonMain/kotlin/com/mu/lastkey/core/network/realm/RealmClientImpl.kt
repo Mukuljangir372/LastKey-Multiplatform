@@ -1,8 +1,8 @@
 package com.mu.lastkey.core.network.realm
 
 import com.mu.lastkey.core.network.realm.exception.UserNotFoundException
-import com.mu.lastkey.core.network.realm.model.CredentialSectionFieldRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialRealmModel
+import com.mu.lastkey.core.network.realm.model.CredentialSectionFieldRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialSectionRealmModel
 import com.mu.lastkey.core.network.realm.model.UserRealmModel
 import io.realm.kotlin.Realm

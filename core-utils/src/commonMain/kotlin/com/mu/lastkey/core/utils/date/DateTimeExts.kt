@@ -4,6 +4,7 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 
 fun currentLocalDateTime(): LocalDateTime {
@@ -13,4 +14,9 @@ fun currentLocalDateTime(): LocalDateTime {
 fun Instant.toLocalDateTime(): LocalDateTime {
     val instant = this
     return instant.toLocalDateTime(TimeZone.UTC)
+}
+
+fun LocalDateTime.toInstant(): Instant {
+    val localDateTime = this
+    return localDateTime.toInstant(TimeZone.UTC)
 }

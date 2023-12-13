@@ -10,6 +10,7 @@ kotlin {
                 implementation(project(":core-domain"))
                 implementation(project(":core-database"))
                 implementation(project(":core-network"))
+                implementation(project(":core-utils"))
                 implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
                 implementation(libs.kotlin.serializaton)
