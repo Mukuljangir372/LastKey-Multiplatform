@@ -22,7 +22,7 @@ data class AppStrings(
     val profile: String,
     val viewProfile: String,
     val noResults: String,
-    val addCredential: String,
+    val addCredential: String
 ) {
     companion object {
         val en = AppStrings(

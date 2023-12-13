@@ -18,7 +18,7 @@ class UserApiImpl(private val realmClient: RealmClient) : UserApi {
         return realm.query(
             clazz = UserRealmModel::class,
             query = "_id == %0",
-            ObjectId(id)
+            args = arrayOf(ObjectId(id))
         ).first().find() ?: throw UserNotFoundException()
     }
 

@@ -13,6 +13,7 @@ import com.mu.lastkey.dashboard.DashboardViewModel
 import com.mu.lastkey.feature.home.ui.di.getHomeUiModule
 import com.mu.lastkey.feature.login.data.di.getLoginDataModule
 import com.mu.lastkey.feature.login.ui.di.getLoginUiModule
+import com.mu.lastkey.feature.password.data.di.getCredentialDataModule
 import com.mu.lastkey.feature.password.ui.di.getCredentialUiModule
 import com.mu.lastkey.feature.splash.ui.di.getSplashUiModule
 import com.mu.lastkey.navigation.AppNavigationImpl
@@ -36,6 +37,7 @@ internal val dependencies = listOf(
     getSharedModule(),
     getSplashUiModule(),
     getHomeUiModule(),
+    getCredentialDataModule(),
     getCredentialUiModule()
 )
 

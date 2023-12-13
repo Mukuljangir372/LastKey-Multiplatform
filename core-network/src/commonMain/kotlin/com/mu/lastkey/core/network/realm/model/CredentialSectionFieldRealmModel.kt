@@ -11,6 +11,7 @@ class CredentialSectionFieldRealmModel : RealmObject {
     var _id: ObjectId = ObjectId()
     var label: String = ""
     var value: String = ""
+    var sectionId: String = ""
     var createdAt: RealmInstant = RealmInstant.now()
     var updatedAt: RealmInstant = RealmInstant.now()
 }
