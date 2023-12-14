@@ -3,10 +3,18 @@ package com.mu.lastkey.feature.password.data.di
 import com.mu.lastkey.core.data.mapper.CredentialMapper
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import com.mu.lastkey.core.network.realm.RealmClient
+import com.mu.lastkey.feature.password.data.network.CredentialFieldNetworkDataSource
+import com.mu.lastkey.feature.password.data.network.CredentialFieldNetworkDataSourceImpl
 import com.mu.lastkey.feature.password.data.network.CredentialNetworkDataSource
 import com.mu.lastkey.feature.password.data.network.CredentialNetworkDataSourceImpl
+import com.mu.lastkey.feature.password.data.network.CredentialSectionNetworkDataSource
+import com.mu.lastkey.feature.password.data.network.CredentialSectionNetworkDataSourceImpl
 import com.mu.lastkey.feature.password.data.network.api.CredentialApi
 import com.mu.lastkey.feature.password.data.network.api.CredentialApiImpl
+import com.mu.lastkey.feature.password.data.network.api.CredentialFieldApi
+import com.mu.lastkey.feature.password.data.network.api.CredentialFieldApiImpl
+import com.mu.lastkey.feature.password.data.network.api.CredentialSectionApi
+import com.mu.lastkey.feature.password.data.network.api.CredentialSectionApiImpl
 import kotlinx.coroutines.CoroutineDispatcher
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -19,8 +27,32 @@ fun getCredentialDataModule(): Module {
             )
         }
         single {
+            provideCredentialSectionApi(
+                realmClient = get()
+            )
+        }
+        single {
+            provideCredentialFieldApi(
+                realmClient = get()
+            )
+        }
+        single {
             provideCredentialNetworkDataSource(
                 credentialApi = get(),
+                credentialMapper = get(),
+                dispatcher = get<AppCoroutineDispatchers>().default
+            )
+        }
+        single {
+            provideCredentialSectionNetworkDataSource(
+                sectionApi = get(),
+                credentialMapper = get(),
+                dispatcher = get<AppCoroutineDispatchers>().default
+            )
+        }
+        single {
+            provideCredentialFieldNetworkDataSource(
+                fieldApi = get(),
                 credentialMapper = get(),
                 dispatcher = get<AppCoroutineDispatchers>().default
             )
@@ -28,8 +60,22 @@ fun getCredentialDataModule(): Module {
     }
 }
 
-private fun provideCredentialApi(realmClient: RealmClient): CredentialApi {
+private fun provideCredentialApi(
+    realmClient: RealmClient
+): CredentialApi {
     return CredentialApiImpl(realmClient)
+}
+
+private fun provideCredentialSectionApi(
+    realmClient: RealmClient
+): CredentialSectionApi {
+    return CredentialSectionApiImpl(realmClient)
+}
+
+private fun provideCredentialFieldApi(
+    realmClient: RealmClient
+): CredentialFieldApi {
+    return CredentialFieldApiImpl(realmClient)
 }
 
 private fun provideCredentialNetworkDataSource(
@@ -39,6 +85,30 @@ private fun provideCredentialNetworkDataSource(
 ): CredentialNetworkDataSource {
     return CredentialNetworkDataSourceImpl(
         credentialApi = credentialApi,
+        credentialMapper = credentialMapper,
+        dispatcher = dispatcher
+    )
+}
+
+private fun provideCredentialSectionNetworkDataSource(
+    sectionApi: CredentialSectionApi,
+    credentialMapper: CredentialMapper,
+    dispatcher: CoroutineDispatcher
+): CredentialSectionNetworkDataSource {
+    return CredentialSectionNetworkDataSourceImpl(
+        sectionApi = sectionApi,
+        credentialMapper = credentialMapper,
+        dispatcher = dispatcher
+    )
+}
+
+private fun provideCredentialFieldNetworkDataSource(
+    fieldApi: CredentialFieldApi,
+    credentialMapper: CredentialMapper,
+    dispatcher: CoroutineDispatcher
+): CredentialFieldNetworkDataSource {
+    return CredentialFieldNetworkDataSourceImpl(
+        fieldApi = fieldApi,
         credentialMapper = credentialMapper,
         dispatcher = dispatcher
     )

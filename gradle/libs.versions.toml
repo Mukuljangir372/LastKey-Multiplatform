@@ -76,6 +76,7 @@ ktor-server-test = { module = "io.ktor:ktor-server-test-host", version.ref = "kt
 koin = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+store = "org.mobilenativefoundation.store:store5:5.0.0"
 
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
