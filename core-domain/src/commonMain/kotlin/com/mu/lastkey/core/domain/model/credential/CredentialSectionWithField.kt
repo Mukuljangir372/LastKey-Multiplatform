@@ -1,13 +1,12 @@
-package com.mu.lastkey.core.data.local.model
+package com.mu.lastkey.core.domain.model.credential
 
 import kotlinx.datetime.LocalDateTime
-import kotlinx.serialization.Serializable
 
-@Serializable
-data class CredentialSectionLocalModel(
+data class CredentialSectionWithField(
     val id: String,
     val name: String,
     val credentialId: String,
+    val fields: List<CredentialSectionField>,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 )

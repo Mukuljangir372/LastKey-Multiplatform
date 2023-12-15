@@ -10,6 +10,7 @@ kotlin {
                 implementation(libs.kotlin.serializaton)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.realm)
+                implementation(libs.store)
             }
         }
     }

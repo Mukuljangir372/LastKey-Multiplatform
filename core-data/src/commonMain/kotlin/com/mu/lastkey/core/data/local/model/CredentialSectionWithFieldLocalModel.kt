@@ -4,10 +4,11 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CredentialSectionLocalModel(
+data class CredentialSectionWithFieldLocalModel(
     val id: String,
     val name: String,
     val credentialId: String,
+    val fields: List<CredentialSectionFieldLocalModel>,
     val createdAt: LocalDateTime,
     val updatedAt: LocalDateTime
 )

@@ -6,6 +6,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-domain"))
+                implementation(libs.koin)
             }
         }
     }

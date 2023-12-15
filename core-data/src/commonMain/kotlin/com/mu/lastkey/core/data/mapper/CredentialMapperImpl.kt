@@ -3,12 +3,14 @@ package com.mu.lastkey.core.data.mapper
 import com.mu.lastkey.core.data.local.model.CredentialLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionFieldLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionLocalModel
+import com.mu.lastkey.core.data.local.model.CredentialSectionWithFieldLocalModel
 import com.mu.lastkey.core.data.network.CredentialNetworkModel
 import com.mu.lastkey.core.data.network.CredentialSectionFieldNetworkModel
 import com.mu.lastkey.core.data.network.CredentialSectionNetworkModel
 import com.mu.lastkey.core.domain.model.credential.Credential
 import com.mu.lastkey.core.domain.model.credential.CredentialSection
 import com.mu.lastkey.core.domain.model.credential.CredentialSectionField
+import com.mu.lastkey.core.domain.model.credential.CredentialSectionWithField
 import com.mu.lastkey.core.network.realm.model.CredentialRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialSectionFieldRealmModel
 import com.mu.lastkey.core.network.realm.model.CredentialSectionRealmModel
@@ -111,8 +113,7 @@ internal class CredentialMapperImpl : CredentialMapper {
             name = model.name,
             credentialId = model.credentialId,
             createdAt = model.createdAt,
-            updatedAt = model.updatedAt,
-            fields = emptyList()
+            updatedAt = model.updatedAt
         )
     }
 
@@ -141,14 +142,12 @@ internal class CredentialMapperImpl : CredentialMapper {
     }
 
     override fun entitySectionToLocal(
-        model: CredentialSectionEntity,
-        fields: List<CredentialSectionFieldLocalModel>
+        model: CredentialSectionEntity
     ): CredentialSectionLocalModel {
         return CredentialSectionLocalModel(
             id = model.id,
             name = model.name,
             credentialId = model.credential_id,
-            fields = fields,
             createdAt = model.createdAt,
             updatedAt = model.updatedAt
         )
@@ -185,7 +184,19 @@ internal class CredentialMapperImpl : CredentialMapper {
             id = model.id,
             name = model.name,
             credentialId = model.credentialId,
+            createdAt = model.createdAt,
+            updatedAt = model.updatedAt
+        )
+    }
+
+    override fun localSectionWithFieldToDomain(
+        model: CredentialSectionWithFieldLocalModel
+    ): CredentialSectionWithField {
+        return CredentialSectionWithField(
+            id = model.id,
+            name = model.name,
             fields = model.fields.map { localFieldToDomain(it) },
+            credentialId = model.credentialId,
             createdAt = model.createdAt,
             updatedAt = model.updatedAt
         )
