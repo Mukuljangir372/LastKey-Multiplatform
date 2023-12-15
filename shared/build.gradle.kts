@@ -42,9 +42,9 @@ kotlin {
             dependencies {
                 implementation(libs.koin)
                 implementation(libs.kotlin.serializaton)
-                api(project(":core-data"))
-                api(project(":core-domain"))
-                api(project(":core-ui"))
+                api(project(":common:data"))
+                api(project(":common:domain"))
+                api(project(":common:ui"))
                 api(project(":core-database"))
                 api(project(":core-logging"))
                 api(project(":core-network"))

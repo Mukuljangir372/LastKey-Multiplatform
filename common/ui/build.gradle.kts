@@ -17,7 +17,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(":core-utils"))
-                implementation(project(":core-domain"))
+                implementation(project(":common:domain"))
                 api(compose.runtime)
                 api(compose.foundation)
                 api(compose.material)
@@ -41,7 +41,7 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.core.ui"
+    namespace = "com.mu.lastkey.common.ui"
     buildFeatures {
         compose = true
     }
