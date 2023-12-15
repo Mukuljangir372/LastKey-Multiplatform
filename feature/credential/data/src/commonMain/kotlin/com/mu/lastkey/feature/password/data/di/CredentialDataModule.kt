@@ -97,7 +97,7 @@ private fun provideCredentialSectionNetworkDataSource(
 ): CredentialSectionNetworkDataSource {
     return CredentialSectionNetworkDataSourceImpl(
         sectionApi = sectionApi,
-        credentialMapper = credentialMapper,
+        mapper = credentialMapper,
         dispatcher = dispatcher
     )
 }
@@ -109,7 +109,7 @@ private fun provideCredentialFieldNetworkDataSource(
 ): CredentialFieldNetworkDataSource {
     return CredentialFieldNetworkDataSourceImpl(
         fieldApi = fieldApi,
-        credentialMapper = credentialMapper,
+        mapper = credentialMapper,
         dispatcher = dispatcher
     )
 }

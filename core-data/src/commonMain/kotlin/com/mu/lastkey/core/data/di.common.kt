@@ -4,12 +4,20 @@ import app.cash.sqldelight.db.SqlDriver
 import com.mu.lastkey.core.data.local.AppDatabaseFactory
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSource
 import com.mu.lastkey.core.data.local.AuthUserLocalDataSourceImpl
+import com.mu.lastkey.core.data.local.CredentialFieldLocalDataSource
+import com.mu.lastkey.core.data.local.CredentialFieldLocalDataSourceImpl
 import com.mu.lastkey.core.data.local.CredentialLocalDataSource
 import com.mu.lastkey.core.data.local.CredentialLocalDataSourceImpl
+import com.mu.lastkey.core.data.local.CredentialSectionLocalDataSource
+import com.mu.lastkey.core.data.local.CredentialSectionLocalDataSourceImpl
 import com.mu.lastkey.core.data.mapper.AuthUserMapper
 import com.mu.lastkey.core.data.mapper.AuthUserMapperImpl
+import com.mu.lastkey.core.data.mapper.CredentialFieldMapper
+import com.mu.lastkey.core.data.mapper.CredentialFieldMapperImpl
 import com.mu.lastkey.core.data.mapper.CredentialMapper
 import com.mu.lastkey.core.data.mapper.CredentialMapperImpl
+import com.mu.lastkey.core.data.mapper.CredentialSectionMapper
+import com.mu.lastkey.core.data.mapper.CredentialSectionMapperImpl
 import com.mu.lastkey.core.data.repository.AuthUserRepositoryImpl
 import com.mu.lastkey.core.data.usecase.GetActiveAuthSessionUsecaseImpl
 import com.mu.lastkey.core.domain.InputValidator
@@ -35,8 +43,12 @@ fun getCoreDataModule(): Module {
         single { provideAppDatabase(get(named(APP_DATABASE_DRIVER))) }
         single { provideAuthUserMapper() }
         single { provideCredentialMapper() }
+        single { provideCredentialSectionMapper(get()) }
+        single { provideCredentialFieldMapper() }
         single { provideAuthUserLocalDataSource(get(), get()) }
         single { provideCredentialLocalDataSource(get(), get()) }
+        single { provideCredentialSectionLocalDataSource(get()) }
+        single { provideCredentialFieldLocalDataSource(get()) }
         single { provideAuthUserRepository(get(), get(), get()) }
         single { provideGetActiveAuthSessionUsecase(get()) }
     }
@@ -66,6 +78,16 @@ private fun provideCredentialMapper(): CredentialMapper {
     return CredentialMapperImpl()
 }
 
+private fun provideCredentialSectionMapper(
+    fieldMapper: CredentialFieldMapper
+): CredentialSectionMapper {
+    return CredentialSectionMapperImpl(fieldMapper)
+}
+
+private fun provideCredentialFieldMapper(): CredentialFieldMapper {
+    return CredentialFieldMapperImpl()
+}
+
 private fun provideInputValidator(): InputValidator {
     return InputValidatorImpl()
 }
@@ -87,6 +109,22 @@ private fun provideCredentialLocalDataSource(
     return CredentialLocalDataSourceImpl(
         database = appDatabase,
         mapper = credentialMapper
+    )
+}
+
+private fun provideCredentialSectionLocalDataSource(
+    appDatabase: AppDatabase
+): CredentialSectionLocalDataSource {
+    return CredentialSectionLocalDataSourceImpl(
+        database = appDatabase
+    )
+}
+
+private fun provideCredentialFieldLocalDataSource(
+    appDatabase: AppDatabase
+): CredentialFieldLocalDataSource {
+    return CredentialFieldLocalDataSourceImpl(
+        database = appDatabase
     )
 }
 
