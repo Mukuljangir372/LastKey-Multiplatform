@@ -5,6 +5,7 @@ import com.mu.lastkey.core.data.AppDatabase
 import com.mu.lastkey.core.data.local.model.CredentialLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionFieldLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialSectionLocalModel
+import com.mu.lastkey.core.data.local.model.CredentialSectionWithFieldLocalModel
 import com.mu.lastkey.core.data.mapper.CredentialMapper
 import commulastkeycoredata.GetCredentialSectionsByOffset
 import kotlinx.coroutines.flow.Flow
@@ -29,7 +30,7 @@ internal class CredentialLocalDataSourceImpl(
         credentialId: String,
         limit: Long,
         offset: Long
-    ): Flow<List<CredentialSectionLocalModel>> {
+    ): Flow<List<CredentialSectionWithFieldLocalModel>> {
         return database.credentialQueries
             .getCredentialSectionsByOffset(credentialId, limit, offset)
             .asFlow()
@@ -94,7 +95,7 @@ internal class CredentialLocalDataSourceImpl(
     companion object {
         private fun mapCredentialSections(
             result: List<GetCredentialSectionsByOffset>
-        ): List<CredentialSectionLocalModel> {
+        ): List<CredentialSectionWithFieldLocalModel> {
             return result.groupBy { it.id }.map { (_, list) ->
                 val section = list.first()
                 val fields = list.map { field ->
@@ -107,7 +108,7 @@ internal class CredentialLocalDataSourceImpl(
                         updatedAt = field.field_updatedAt
                     )
                 }
-                CredentialSectionLocalModel(
+                CredentialSectionWithFieldLocalModel(
                     id = section.id,
                     name = section.name,
                     credentialId = section.credential_id,
