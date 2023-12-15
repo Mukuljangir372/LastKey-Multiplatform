@@ -9,8 +9,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-ui"))
-                implementation(project(":core-domain"))
+                implementation(project(":common:ui"))
+                implementation(project(":common:domain"))
                 implementation(project(":feature:credential:domain"))
                 implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)

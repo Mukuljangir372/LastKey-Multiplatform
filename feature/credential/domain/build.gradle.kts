@@ -5,7 +5,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-domain"))
+                implementation(project(":common:domain"))
                 implementation(libs.koin)
             }
         }

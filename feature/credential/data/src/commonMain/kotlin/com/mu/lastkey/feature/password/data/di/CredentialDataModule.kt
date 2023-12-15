@@ -1,6 +1,8 @@
 package com.mu.lastkey.feature.password.data.di
 
+import com.mu.lastkey.core.data.mapper.CredentialFieldMapper
 import com.mu.lastkey.core.data.mapper.CredentialMapper
+import com.mu.lastkey.core.data.mapper.CredentialSectionMapper
 import com.mu.lastkey.core.domain.model.AppCoroutineDispatchers
 import com.mu.lastkey.core.network.realm.RealmClient
 import com.mu.lastkey.feature.password.data.network.CredentialFieldNetworkDataSource
@@ -46,14 +48,14 @@ fun getCredentialDataModule(): Module {
         single {
             provideCredentialSectionNetworkDataSource(
                 sectionApi = get(),
-                credentialMapper = get(),
+                sectionMapper = get(),
                 dispatcher = get<AppCoroutineDispatchers>().default
             )
         }
         single {
             provideCredentialFieldNetworkDataSource(
                 fieldApi = get(),
-                credentialMapper = get(),
+                fieldMapper = get(),
                 dispatcher = get<AppCoroutineDispatchers>().default
             )
         }
@@ -92,24 +94,24 @@ private fun provideCredentialNetworkDataSource(
 
 private fun provideCredentialSectionNetworkDataSource(
     sectionApi: CredentialSectionApi,
-    credentialMapper: CredentialMapper,
+    sectionMapper: CredentialSectionMapper,
     dispatcher: CoroutineDispatcher
 ): CredentialSectionNetworkDataSource {
     return CredentialSectionNetworkDataSourceImpl(
         sectionApi = sectionApi,
-        mapper = credentialMapper,
+        mapper = sectionMapper,
         dispatcher = dispatcher
     )
 }
 
 private fun provideCredentialFieldNetworkDataSource(
     fieldApi: CredentialFieldApi,
-    credentialMapper: CredentialMapper,
+    fieldMapper: CredentialFieldMapper,
     dispatcher: CoroutineDispatcher
 ): CredentialFieldNetworkDataSource {
     return CredentialFieldNetworkDataSourceImpl(
         fieldApi = fieldApi,
-        mapper = credentialMapper,
+        mapper = fieldMapper,
         dispatcher = dispatcher
     )
 }

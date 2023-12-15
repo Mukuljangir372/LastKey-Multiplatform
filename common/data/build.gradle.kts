@@ -7,7 +7,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-domain"))
+                implementation(project(":common:domain"))
                 implementation(project(":core-database"))
                 implementation(project(":core-network"))
                 implementation(project(":core-utils"))
@@ -36,5 +36,5 @@ sqldelight {
     }
 }
 android {
-    namespace = "com.mu.lastkey.core.data"
+    namespace = "com.mu.lastkey.common.data"
 }

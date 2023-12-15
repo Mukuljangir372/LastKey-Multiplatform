@@ -6,8 +6,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":core-data"))
-                implementation(project(":core-domain"))
+                implementation(project(":common:data"))
+                implementation(project(":common:domain"))
                 implementation(project(":core-network"))
                 implementation(project(":core-database"))
                 implementation(project(":feature:home:domain"))

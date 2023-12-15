@@ -10,6 +10,10 @@ class GetCredentialsUsecaseImpl(
     override suspend fun invoke(
         params: GetCredentialsUsecase.Params
     ): ResultWrapper<List<Credential>> {
-        return repository.getCredentials(offset = params.offset)
+        return repository.getCredentials(
+            offset = params.offset,
+            refresh = params.refresh,
+            pagingKey = params.pagingKey
+        )
     }
 }

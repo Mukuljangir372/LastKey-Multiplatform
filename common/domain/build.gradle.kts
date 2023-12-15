@@ -12,5 +12,5 @@ kotlin {
     }
 }
 android {
-    namespace = "com.mu.lastkey.core.domain"
+    namespace = "com.mu.lastkey.common.domain"
 }
