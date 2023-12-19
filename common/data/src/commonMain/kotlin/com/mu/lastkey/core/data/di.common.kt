@@ -27,6 +27,7 @@ import com.mu.lastkey.core.domain.repository.AuthUserRepository
 import com.mu.lastkey.core.domain.usecase.GetActiveAuthSessionUsecase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.serialization.json.Json
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -40,7 +41,7 @@ fun getCoreDataModule(): Module {
         single { provideAppStrings() }
         single { provideInputValidator() }
         single { provideAppCoroutineDispatchers() }
-        single { provideAppDatabase(get(named(APP_DATABASE_DRIVER))) }
+        single { provideAppDatabase(get(named(APP_DATABASE_DRIVER)), get()) }
         single { provideAuthUserMapper() }
         single { provideCredentialMapper() }
         single { provideCredentialSectionMapper(get()) }
@@ -66,8 +67,8 @@ private fun provideAppCoroutineDispatchers(): AppCoroutineDispatchers {
     )
 }
 
-private fun provideAppDatabase(driver: SqlDriver): AppDatabase {
-    return AppDatabaseFactory(driver).create()
+private fun provideAppDatabase(driver: SqlDriver, json: Json): AppDatabase {
+    return AppDatabaseFactory(driver, json).create()
 }
 
 private fun provideAuthUserMapper(): AuthUserMapper {

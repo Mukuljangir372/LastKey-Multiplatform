@@ -6,14 +6,14 @@ import com.mu.lastkey.feature.password.data.repository.store.CredentialsDataStor
 import com.mu.lastkey.feature.password.domain.repository.CredentialRepository
 
 internal class CredentialRepositoryImpl(
-    private val dataStore: CredentialsDataStore
+    private val credentialsDataStore: CredentialsDataStore
 ) : CredentialRepository {
     override suspend fun getCredentials(
         offset: Int,
         refresh: Boolean,
         pagingKey: String
     ): ResultWrapper<List<Credential>> {
-        return dataStore.getCredentials(
+        return credentialsDataStore.getCredentials(
             offset = offset,
             refresh = refresh,
             pagingKey = pagingKey
