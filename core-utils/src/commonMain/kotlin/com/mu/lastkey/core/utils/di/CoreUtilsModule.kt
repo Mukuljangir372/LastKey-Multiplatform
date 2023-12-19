@@ -2,6 +2,8 @@ package com.mu.lastkey.core.utils.di
 
 import com.mu.lastkey.core.utils.device.DeviceConfig
 import com.mu.lastkey.core.utils.json.JsonFactory
+import com.mu.lastkey.core.utils.uuid.UUIDGenerator
+import com.mu.lastkey.core.utils.uuid.UUIDGeneratorImpl
 import com.mu.lastkey.core.utils.validation.BasicValidator
 import com.mu.lastkey.core.utils.validation.BasicValidatorImpl
 import kotlinx.serialization.json.Json
@@ -13,6 +15,7 @@ fun getCoreUtilsModule(): Module {
         single { provideJson() }
         single { provideDeviceConfig() }
         single { provideBasicValidator() }
+        single { provideUUIDGenerator() }
     }
 }
 
@@ -26,4 +29,8 @@ private fun provideDeviceConfig(): DeviceConfig {
 
 private fun provideBasicValidator(): BasicValidator {
     return BasicValidatorImpl()
+}
+
+private fun provideUUIDGenerator(): UUIDGenerator {
+    return UUIDGeneratorImpl()
 }
