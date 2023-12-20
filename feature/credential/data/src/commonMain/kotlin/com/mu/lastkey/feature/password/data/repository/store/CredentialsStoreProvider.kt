@@ -47,7 +47,6 @@ internal class CredentialsStoreProvider(
                     offset = key.offset,
                     limit = LIMIT
                 )
-                check(result is ResultWrapper.Success)
                 result.data.orEmpty()
             }
         }
