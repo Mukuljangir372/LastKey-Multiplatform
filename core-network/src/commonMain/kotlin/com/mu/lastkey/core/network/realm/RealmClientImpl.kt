@@ -22,24 +22,24 @@ internal class RealmClientImpl(
     private var mutex = Mutex()
 
     override suspend fun getApp(): App {
-        return mutex.withLock {
-            if (loadedApp != null) return loadedApp!!
-            val appConfiguration = AppConfiguration.Builder(config.appId)
-            val createdApp = App.create(appConfiguration.build())
-            loadedApp = createdApp
-            loadedApp!!
-        }
+        if (loadedApp != null) return loadedApp!!
+        mutex.tryLock()
+        val appConfiguration = AppConfiguration.Builder(config.appId)
+        val createdApp = App.create(appConfiguration.build())
+        loadedApp = createdApp
+        mutex.unlock()
+        return loadedApp!!
     }
 
     override suspend fun getOpenedRealm(): Realm {
-        return mutex.withLock {
-            val user = getApp().currentUser ?: throw UserNotFoundException()
-            if (loadedRealm != null) return loadedRealm!!
-            val configuration = SyncConfiguration.Builder(user, config.appId, getSchemas())
-            val realm = Realm.open(configuration.build())
-            loadedRealm = realm
-            loadedRealm!!
-        }
+        val user = getApp().currentUser ?: throw UserNotFoundException()
+        if (loadedRealm != null) return loadedRealm!!
+        mutex.tryLock()
+        val configuration = SyncConfiguration.Builder(user, config.appId, getSchemas())
+        val realm = Realm.open(configuration.build())
+        loadedRealm = realm
+        mutex.unlock()
+        return loadedRealm!!
     }
 
     companion object {
