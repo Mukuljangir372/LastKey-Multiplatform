@@ -22,8 +22,8 @@ internal class RealmClientImpl(
     private var mutex = Mutex()
 
     override suspend fun getApp(): App {
-        mutex.tryLock()
         if (loadedApp != null) return loadedApp!!
+        mutex.tryLock()
         val appConfiguration = AppConfiguration.Builder(config.appId)
         val createdApp = App.create(appConfiguration.build())
         loadedApp = createdApp
@@ -33,8 +33,8 @@ internal class RealmClientImpl(
 
     override suspend fun getOpenedRealm(): Realm {
         val user = getApp().currentUser ?: throw UserNotFoundException()
-        mutex.tryLock()
         if (loadedRealm != null) return loadedRealm!!
+        mutex.tryLock()
         val configuration = SyncConfiguration.Builder(user, config.appId, getSchemas())
         val realm = Realm.open(configuration.build())
         loadedRealm = realm
