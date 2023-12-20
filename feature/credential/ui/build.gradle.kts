@@ -14,6 +14,7 @@ kotlin {
                 implementation(project(":feature:credential:domain"))
                 implementation(libs.koin)
                 implementation(libs.kotlin.coroutines.core)
+                implementation(libs.kotlinx.datetime)
             }
         }
     }

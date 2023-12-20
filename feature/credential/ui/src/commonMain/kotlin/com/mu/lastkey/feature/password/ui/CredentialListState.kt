@@ -15,7 +15,7 @@ internal data class CredentialListState(
         val idle = CredentialListState(
             currentOffset = 1,
             loading = false,
-            credentials = CredentialListMock.credentials
+            credentials = emptyList()
         )
     }
 }
