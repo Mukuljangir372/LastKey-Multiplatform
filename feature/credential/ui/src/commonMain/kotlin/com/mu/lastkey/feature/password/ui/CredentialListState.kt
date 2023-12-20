@@ -7,11 +7,13 @@ import com.mu.lastkey.feature.password.ui.model.CredentialDisplayModel
 
 @Stable
 internal data class CredentialListState(
+    val currentOffset: Int,
     val loading: Boolean,
     val credentials: List<CredentialDisplayModel>
 ) {
     companion object {
         val idle = CredentialListState(
+            currentOffset = 1,
             loading = false,
             credentials = CredentialListMock.credentials
         )
@@ -23,6 +25,9 @@ internal sealed interface CredentialListUiState {
     data object Loading : CredentialListUiState
 
     @Stable
-    data class Credentials(val list: List<CredentialDisplayModel>) : CredentialListUiState
+    data class Credentials(
+        val list: List<CredentialDisplayModel>
+    ) : CredentialListUiState
+
     data object NoResults : CredentialListUiState
 }
