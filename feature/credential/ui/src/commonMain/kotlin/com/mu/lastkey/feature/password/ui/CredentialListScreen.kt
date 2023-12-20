@@ -107,7 +107,8 @@ private fun CredentialListUiScreen(viewModel: CredentialListViewModel) {
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(paddingValues)
-                        .background(LastKeyTheme.colorScheme.surface)
+                        .background(LastKeyTheme.colorScheme.surface),
+                    contentAlignment = Alignment.Center
                 ) {
                     Text(LastKeyTheme.strings.noResults)
                 }
