@@ -5,6 +5,7 @@ import com.mu.lastkey.core.data.local.model.CredentialLocalModel
 import com.mu.lastkey.core.data.local.model.CredentialPagingLocalModel
 import com.mu.lastkey.core.data.mapper.CredentialMapper
 import com.mu.lastkey.core.data.network.CredentialNetworkModel
+import com.mu.lastkey.core.domain.model.ResultWrapper
 import com.mu.lastkey.core.domain.model.credential.Credential
 import com.mu.lastkey.core.utils.storeBuilder
 import com.mu.lastkey.core.utils.useDispatchers
@@ -42,10 +43,12 @@ internal class CredentialsStoreProvider(
             networkDataSource: CredentialNetworkDataSource
         ): Fetcher<Key, List<CredentialNetworkModel>> {
             return Fetcher.of { key: Key ->
-                networkDataSource.getCredentialsByOffset(
+                val result = networkDataSource.getCredentialsByOffset(
                     offset = key.offset,
                     limit = LIMIT
                 )
+                check(result is ResultWrapper.Success)
+                result.data.orEmpty()
             }
         }
 
